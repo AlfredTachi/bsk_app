@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bsk_app/splash.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,11 +8,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: true,
-      title: 'Flutter Demo',
+      title: 'BSK Quiz',
       theme: ThemeData(
      
         primarySwatch: Colors.indigo,
       ),
+      home: splashscreen(),
     );
   }
 }
