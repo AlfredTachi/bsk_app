@@ -7,7 +7,17 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
 
-  Widget customcard(){
+  List<String> images = [
+    "images/01_BS_GL.png",
+    "images/02_Process-thread.png",
+    "images/03_ipc.png",
+    "images/04_scheduler.png",
+    "images/05_speicher.png",
+    "images/06_file-system.png",
+    "images/07_IT-Sicherheit.png",
+  ];
+
+  Widget customcard(String kapitelname, String image){
     return Padding(
       padding: EdgeInsets.all(
         20.0,
@@ -33,13 +43,37 @@ class _homepageState extends State<homepage> {
                       child: ClipOval(
                         child: Image(
                           image: AssetImage(
-                            "images/01_BS_GL.png",
+                            image,
                           ),
                         ),
                       ),
                     ),
                   ),
-                )
+                ),
+                Center(
+                  child: Text(
+                    kapitelname,
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.white,
+                      fontFamily: "Quando",
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
+                    "Dies ist eine Beschreibung \nkdhahskldaksdhlkashdkjsadhjk\nhakdhakhdkjdhkjad \njhdjagdgajhdjhg",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                      fontFamily: "Alike",
+                    ),
+                    maxLines: 5,
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
               ],
             )
           )
@@ -61,7 +95,13 @@ class _homepageState extends State<homepage> {
       ),
       body: ListView(
         children: <Widget>[
-          customcard(),
+          customcard("Einfühung und Grundlagen", images[0]),
+          customcard("Prozesse und Threads", images[1]),
+          customcard("IPC und Race Conditions", images[2]),
+          customcard("Scheduling", images[3]),
+          customcard("Speicherverwaltung", images[4]),
+          customcard("Dateisysteme", images[5]),
+          customcard("IT-Sicherheit", images[6]),
         ],
       ),
     );
