@@ -23,6 +23,9 @@ class _HomepageState extends State<Homepage> {
         20.0,
       ),
       child: InkWell(
+        onTap: (){
+          debugPrint("Card Tapped");
+        },
         child: Material(
           color: Colors.indigoAccent,
           elevation: 10.0,
@@ -42,6 +45,7 @@ class _HomepageState extends State<Homepage> {
                       width: 200.0,
                       child: ClipOval(
                         child: Image(
+                          fit: BoxFit.contain,
                           image: AssetImage(
                             image,
                           ),
@@ -87,7 +91,7 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "BSK QUIZ",
+          "BskQuiz",
           style: TextStyle(
             fontFamily: "Qando",
           ),
