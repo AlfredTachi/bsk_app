@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:bsk_app/home.dart';
+//import 'package:bsk_app/home/home.dart';
+import 'package:bsk_app/login/login.dart';
 import 'package:flutter/material.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -13,9 +14,10 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState(){
     super.initState();
-    Timer(Duration(seconds: 3), (){
+    Timer(Duration(seconds: 5), (){
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => Homepage(),
+        //builder: (context) => Homepage(),
+        builder: (context) => LoginPage(),
       ));
     });
   }
@@ -23,10 +25,10 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo,
+      backgroundColor: Colors.deepPurple,
       body: Center(
         child: Text(
-          "BskQuiz",
+          "BSK Quiz ...",
           style: TextStyle(
             fontSize: 50.0,
             color: Colors.white,

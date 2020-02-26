@@ -27,7 +27,7 @@ class _HomepageState extends State<Homepage> {
           debugPrint("Card Tapped");
         },
         child: Material(
-          color: Colors.indigoAccent,
+          color: Colors.deepPurple,
           elevation: 10.0,
           borderRadius: BorderRadius.circular(20.0),
           child: Container(
@@ -99,7 +99,7 @@ class _HomepageState extends State<Homepage> {
       ),
       body: ListView(
         children: <Widget>[
-          customcard("Einfühung und Grundlagen", images[0]),
+          customcard("Einführung und Grundlagen", images[0]),
           customcard("Prozesse und Threads", images[1]),
           customcard("IPC und Race Conditions", images[2]),
           customcard("Scheduling", images[3]),

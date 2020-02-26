@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bsk_app/splash.dart';
+import 'package:bsk_app/splash/splash.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'BskQuiz',
       theme: ThemeData(
      
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.deepPurple,
       ),
       home: Splashscreen(),
     );
