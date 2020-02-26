@@ -8,12 +8,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: true,
-      title: 'BSK Quiz',
+      title: 'BSK QUIZ',
       theme: ThemeData(
      
         primarySwatch: Colors.indigo,
       ),
-      home: splashscreen(),
+      home: Splashscreen(),
     );
   }
 }
