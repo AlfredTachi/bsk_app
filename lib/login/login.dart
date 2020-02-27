@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:bsk_app/home/home.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -7,7 +6,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,9 +17,8 @@ class _LoginPageState extends State<LoginPage> {
               height: 300,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/background.png"),
-                  fit: BoxFit.fill
-                ),
+                    image: AssetImage("images/background.png"),
+                    fit: BoxFit.fill),
               ),
               child: Stack(
                 children: <Widget>[
@@ -32,8 +29,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("images/light-1.png")
-                        ),
+                            image: AssetImage("images/light-1.png")),
                       ),
                     ),
                   ),
@@ -44,8 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("images/light-2.png")
-                        ),
+                            image: AssetImage("images/light-2.png")),
                       ),
                     ),
                   ),
@@ -57,8 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("images/clock.png")
-                        ),
+                            image: AssetImage("images/clock.png")),
                       ),
                     ),
                   ),
@@ -69,11 +63,10 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           "Einloggen",
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 40,
-                            fontFamily: "Quando",
-                            fontWeight: FontWeight.bold
-                          ),
+                              color: Colors.white,
+                              fontSize: 40,
+                              fontFamily: "Quando",
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -88,47 +81,36 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     padding: EdgeInsets.all(5.0),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(143, 148, 251, 2),
-                          blurRadius: 20.0,
-                          offset: Offset(0, 10),
-                        )
-                      ]
-                    ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(143, 148, 251, 2),
+                            blurRadius: 20.0,
+                            offset: Offset(0, 10),
+                          )
+                        ]),
                     child: Column(
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.grey[100]
-                              )
-                            )
-                          ),
+                              border: Border(
+                                  bottom: BorderSide(color: Colors.grey[100]))),
                           child: TextField(
                             decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Email-Adresse",
-                              hintStyle: TextStyle(
-                                color: Colors.grey[400]
-                              )
-                            ),
+                                border: InputBorder.none,
+                                hintText: "Email-Adresse",
+                                hintStyle: TextStyle(color: Colors.grey[400])),
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
                             decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Passwort",
-                              hintStyle: TextStyle(
-                                color: Colors.grey[400]
-                              )
-                            ),
+                                border: InputBorder.none,
+                                hintText: "Passwort",
+                                hintStyle: TextStyle(color: Colors.grey[400])),
                           ),
                         ),
                       ],
@@ -137,23 +119,26 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 30,
                   ),
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromRGBO(143, 148, 251, 1),
-                          Color.fromRGBO(143, 148, 251, 6),
-                        ],
-                      ),
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/profilpage");
+                    },
+                    color: Color.fromRGBO(143, 148, 251, 1),
+                    splashColor: Colors.deepPurple,
+                    highlightColor: Colors.deepPurple,
+                    padding: EdgeInsets.all(0.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)
                     ),
-                    child: Center(
-                      child: Text(
-                        "Einloggen",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                    child: Container(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "Einloggen",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -170,23 +155,26 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromRGBO(143, 148, 251, 1),
-                          Color.fromRGBO(143, 148, 251, 6),
-                        ],
-                      ),
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/homepage");
+                    },
+                    color: Color.fromRGBO(143, 148, 251, 1),
+                    splashColor: Colors.deepPurple,
+                    highlightColor: Colors.deepPurple,
+                    padding: EdgeInsets.all(0.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)
                     ),
-                    child: Center(
-                      child: Text(
-                        "Weiter ohne Anmeldung",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                    child: Container(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "Weiter ohne Anmeldung",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -196,8 +184,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ],
         ),
-      ),     
+      ),
     );
   }
-
 }

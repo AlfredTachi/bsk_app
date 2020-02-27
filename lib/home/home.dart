@@ -6,7 +6,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
+  
   List<String> images = [
     "images/01_BS_GL.png",
     "images/02_Process-thread.png",
@@ -28,7 +28,7 @@ class _HomepageState extends State<Homepage> {
           debugPrint("Card Tapped");
         },
         child: Material(
-          color: Colors.deepPurple,
+          color: Color.fromRGBO(143, 148, 251, 6),
           elevation: 10.0,
           borderRadius: BorderRadius.circular(20.0),
           child: Container(
@@ -90,6 +90,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       appBar: AppBar(
         title: Text(
           "BskQuiz",
