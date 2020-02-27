@@ -28,7 +28,7 @@ class _HomepageState extends State<Homepage> {
           debugPrint("Card Tapped");
         },
         child: Material(
-          color: Color.fromRGBO(143, 148, 251, 6),
+          color: Color.fromRGBO(143, 140, 251, 1),
           elevation: 10.0,
           borderRadius: BorderRadius.circular(20.0),
           child: Container(
@@ -98,6 +98,11 @@ class _HomepageState extends State<Homepage> {
             fontFamily: "Qando",
           ),
         ),
+        elevation: 10.0,
+        centerTitle: true,
+        actions: <Widget>[
+          PopupMenu(),
+        ],
       ),
       body: ListView(
         children: <Widget>[
@@ -113,4 +118,37 @@ class _HomepageState extends State<Homepage> {
       ),
     );
   }
+}
+
+class PopupMenu extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<Menuoption>(
+      onSelected: (Menuoption option){
+        print(option.toString());
+      },
+      itemBuilder: (BuildContext context){
+        return <PopupMenuEntry<Menuoption>>[
+          PopupMenuItem(
+            child: Text("Profil"),
+            value: Menuoption.Profil,
+          ),
+           PopupMenuItem(
+            child: Text("Ausloggen"),
+            value: Menuoption.SignOut,
+          ),
+           PopupMenuItem(
+            child: Text("Über mich"),
+            value: Menuoption.About,
+          ),
+        ];
+      },
+    );
+  }
+}
+
+enum Menuoption{
+  Profil,
+  SignOut,
+  About,
 }

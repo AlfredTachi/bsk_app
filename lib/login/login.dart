@@ -9,7 +9,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.indigo,
       body: Container(
         child: Column(
           children: <Widget>[
@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                   Text(
                     "Passwort vergessen?",
                     style: TextStyle(
-                      color: Color.fromRGBO(143, 148, 251, 1),
+                      color: Colors.white,
                     ),
                   ),
                   SizedBox(
