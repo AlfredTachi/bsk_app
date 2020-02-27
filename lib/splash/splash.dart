@@ -1,6 +1,6 @@
 import 'dart:async';
 
-//import 'package:bsk_app/home/home.dart';
+// import 'package:bsk_app/home/home.dart';
 import 'package:bsk_app/login/login.dart';
 import 'package:flutter/material.dart';
 
@@ -14,9 +14,9 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState(){
     super.initState();
-    Timer(Duration(seconds: 5), (){
+    Timer(Duration(seconds: 4), (){
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        //builder: (context) => Homepage(),
+        // builder: (context) => Homepage(),
         builder: (context) => LoginPage(),
       ));
     });

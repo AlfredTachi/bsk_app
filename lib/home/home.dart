@@ -15,6 +15,7 @@ class _HomepageState extends State<Homepage> {
     "images/05_speicher.png",
     "images/06_file-system.png",
     "images/07_IT-Sicherheit.png",
+    "images/examQuestion.png",
   ];
 
   Widget customcard(String kapitelname, String image){
@@ -61,7 +62,7 @@ class _HomepageState extends State<Homepage> {
                       fontSize: 24.0,
                       color: Colors.white,
                       fontFamily: "Quando",
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -106,6 +107,7 @@ class _HomepageState extends State<Homepage> {
           customcard("Speicherverwaltung", images[4]),
           customcard("Dateisysteme", images[5]),
           customcard("IT-Sicherheit", images[6]),
+          customcard("Fragen aus alten Klausuren", images[7]),
         ],
       ),
     );

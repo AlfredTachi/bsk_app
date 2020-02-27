@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bsk_app/home/home.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -6,6 +7,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 400,
+              height: 300,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("images/background.png"),
@@ -26,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
                   Positioned(
                     left: 30,
                     width: 80,
-                    height: 200,
+                    height: 150,
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -38,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                   Positioned(
                     left: 140,
                     width: 80,
-                    height: 150,
+                    height: 100,
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -51,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                     right: 40,
                     top: 40,
                     width: 80,
-                    height: 200,
+                    height: 150,
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -65,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                       margin: EdgeInsets.only(top: 50.0),
                       child: Center(
                         child: Text(
-                          "Login",
+                          "Einloggen",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 40,
@@ -132,14 +134,70 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromRGBO(143, 148, 251, 1),
+                          Color.fromRGBO(143, 148, 251, 6),
+                        ],
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Einloggen",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Text(
+                    "Passwort vergessen?",
+                    style: TextStyle(
+                      color: Color.fromRGBO(143, 148, 251, 1),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromRGBO(143, 148, 251, 1),
+                          Color.fromRGBO(143, 148, 251, 6),
+                        ],
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Weiter ohne Anmeldung",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           ],
         ),
-
-      ),
-      
+      ),     
     );
   }
+
 }
