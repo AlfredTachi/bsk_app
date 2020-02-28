@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 50,
                       child: Center(
                         child: Text(
-                          "Weiter ohne Anmeldung",
+                          "Weiter ohne Registrierung",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
@@ -116,6 +117,7 @@ class _HomepageState extends State<Homepage> {
           customcard("Klausurfragen", images[7]),
         ],
       ),
+      // bottomNavigationBar: CurvedNavigationBar(items: null),
     );
   }
 }
