@@ -62,7 +62,7 @@ class _HomepageState extends State<Homepage> {
                       fontSize: 24.0,
                       color: Colors.white,
                       fontFamily: "Quando",
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
@@ -98,7 +98,7 @@ class _HomepageState extends State<Homepage> {
             fontFamily: "Qando",
           ),
         ),
-        elevation: 10.0,
+        elevation: 20.0,
         centerTitle: true,
         actions: <Widget>[
           PopupMenu(),
@@ -106,14 +106,14 @@ class _HomepageState extends State<Homepage> {
       ),
       body: ListView(
         children: <Widget>[
-          customcard("Einführung und Grundlagen", images[0]),
+          customcard("Einführung & Grundlagen", images[0]),
           customcard("Prozesse und Threads", images[1]),
           customcard("IPC und Race Conditions", images[2]),
           customcard("Scheduling", images[3]),
           customcard("Speicherverwaltung", images[4]),
           customcard("Dateisysteme", images[5]),
           customcard("IT-Sicherheit", images[6]),
-          customcard("Fragen aus alten Klausuren", images[7]),
+          customcard("Klausurfragen", images[7]),
         ],
       ),
     );
@@ -130,15 +130,15 @@ class PopupMenu extends StatelessWidget {
       itemBuilder: (BuildContext context){
         return <PopupMenuEntry<Menuoption>>[
           PopupMenuItem(
-            child: Text("Profil"),
+            child: Text("Moodle"),
             value: Menuoption.Profil,
           ),
-           PopupMenuItem(
-            child: Text("Ausloggen"),
-            value: Menuoption.SignOut,
+          PopupMenuItem(
+            child: Text("Über mich"),
+            value: Menuoption.AppShare,
           ),
            PopupMenuItem(
-            child: Text("Über mich"),
+            child: Text("Exit"),
             value: Menuoption.About,
           ),
         ];
@@ -150,5 +150,6 @@ class PopupMenu extends StatelessWidget {
 enum Menuoption{
   Profil,
   SignOut,
+  AppShare,
   About,
 }

@@ -9,9 +9,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.indigo,
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
               height: 300,
@@ -123,6 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       Navigator.of(context).pushNamed("/profilpage");
                     },
+                    elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),
                     splashColor: Colors.deepPurple,
                     highlightColor: Colors.deepPurple,
@@ -159,6 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       Navigator.of(context).pushNamed("/homepage");
                     },
+                    elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),
                     splashColor: Colors.deepPurple,
                     highlightColor: Colors.deepPurple,
@@ -177,6 +181,15 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Text(
+                    "Sich registrieren?",
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
                   ),
                 ],
