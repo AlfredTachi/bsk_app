@@ -9,6 +9,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // fix overflow when keyboard is opening
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.indigo,
       body: Container(

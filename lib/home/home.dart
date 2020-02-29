@@ -114,10 +114,27 @@ class _HomepageState extends State<Homepage> {
           customcard("Speicherverwaltung", images[4]),
           customcard("Dateisysteme", images[5]),
           customcard("IT-Sicherheit", images[6]),
-          customcard("Klausurfragen", images[7]),
+          customcard("Alte Klausurfragen", images[7]),
         ],
       ),
-      // bottomNavigationBar: CurvedNavigationBar(items: null),
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Colors.white,
+        backgroundColor: Colors.deepPurple,
+        buttonBackgroundColor: Colors.white,
+        height: 50,
+        items: <Widget>[
+          Icon(Icons.search, size: 20, color: Colors.deepPurple),
+          Icon(Icons.share, size: 20, color: Colors.deepPurple),
+          Icon(Icons.person, size: 20, color: Colors.deepPurple)
+        ],
+        animationDuration: Duration(
+          milliseconds: 200,
+        ),
+        index: 1,
+        onTap: (index){
+          debugPrint("Currrent Index is $index");
+        },
+      ),
     );
   }
 }
