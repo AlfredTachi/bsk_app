@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
@@ -62,7 +63,7 @@ class _HomepageState extends State<Homepage> {
                       fontSize: 24.0,
                       color: Colors.white,
                       fontFamily: "Quando",
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
@@ -98,7 +99,7 @@ class _HomepageState extends State<Homepage> {
             fontFamily: "Qando",
           ),
         ),
-        elevation: 10.0,
+        elevation: 20.0,
         centerTitle: true,
         actions: <Widget>[
           PopupMenu(),
@@ -106,15 +107,33 @@ class _HomepageState extends State<Homepage> {
       ),
       body: ListView(
         children: <Widget>[
-          customcard("Einführung und Grundlagen", images[0]),
+          customcard("Einführung & Grundlagen", images[0]),
           customcard("Prozesse und Threads", images[1]),
           customcard("IPC und Race Conditions", images[2]),
           customcard("Scheduling", images[3]),
           customcard("Speicherverwaltung", images[4]),
           customcard("Dateisysteme", images[5]),
           customcard("IT-Sicherheit", images[6]),
-          customcard("Fragen aus alten Klausuren", images[7]),
+          customcard("Alte Klausurfragen", images[7]),
         ],
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Colors.white,
+        backgroundColor: Colors.deepPurple,
+        buttonBackgroundColor: Colors.white,
+        height: 50,
+        items: <Widget>[
+          Icon(Icons.search, size: 20, color: Colors.deepPurple),
+          Icon(Icons.share, size: 20, color: Colors.deepPurple),
+          Icon(Icons.person, size: 20, color: Colors.deepPurple)
+        ],
+        animationDuration: Duration(
+          milliseconds: 200,
+        ),
+        index: 1,
+        onTap: (index){
+          debugPrint("Currrent Index is $index");
+        },
       ),
     );
   }
@@ -130,15 +149,15 @@ class PopupMenu extends StatelessWidget {
       itemBuilder: (BuildContext context){
         return <PopupMenuEntry<Menuoption>>[
           PopupMenuItem(
-            child: Text("Profil"),
+            child: Text("Moodle"),
             value: Menuoption.Profil,
           ),
-           PopupMenuItem(
-            child: Text("Ausloggen"),
-            value: Menuoption.SignOut,
+          PopupMenuItem(
+            child: Text("Über mich"),
+            value: Menuoption.AppShare,
           ),
            PopupMenuItem(
-            child: Text("Über mich"),
+            child: Text("Exit"),
             value: Menuoption.About,
           ),
         ];
@@ -150,5 +169,6 @@ class PopupMenu extends StatelessWidget {
 enum Menuoption{
   Profil,
   SignOut,
+  AppShare,
   About,
 }
