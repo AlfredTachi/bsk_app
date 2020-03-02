@@ -10,9 +10,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // fix overflow when keyboard is opening
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       backgroundColor: Colors.indigo,
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -132,8 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                     highlightColor: Colors.deepPurple,
                     padding: EdgeInsets.all(0.0),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)
-                    ),
+                        borderRadius: BorderRadius.circular(10.0)),
                     child: Container(
                       height: 50,
                       child: Center(
@@ -169,8 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                     highlightColor: Colors.deepPurple,
                     padding: EdgeInsets.all(0.0),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)
-                    ),
+                        borderRadius: BorderRadius.circular(10.0)),
                     child: Container(
                       height: 50,
                       child: Center(

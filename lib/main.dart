@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       title: 'BskQuiz',
       theme: ThemeData(
-     
         primarySwatch: Colors.deepPurple,
       ),
       initialRoute: '/',
@@ -18,4 +17,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

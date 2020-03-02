@@ -8,11 +8,10 @@ class Splashscreen extends StatefulWidget {
 }
 
 class _SplashscreenState extends State<Splashscreen> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), (){
+    Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushNamed(
         '/loginpage',
       );
@@ -33,7 +32,6 @@ class _SplashscreenState extends State<Splashscreen> {
           ),
         ),
       ),
-      
     );
   }
 }

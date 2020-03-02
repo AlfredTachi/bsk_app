@@ -7,7 +7,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  
   List<String> images = [
     "images/01_BS_GL.png",
     "images/02_Process-thread.png",
@@ -19,72 +18,69 @@ class _HomepageState extends State<Homepage> {
     "images/examQuestion.png",
   ];
 
-  Widget customcard(String kapitelname, String image){
+  Widget customcard(String kapitelname, String image) {
     return Padding(
       padding: EdgeInsets.all(
         20.0,
       ),
       child: InkWell(
-        onTap: (){
-          debugPrint("Card Tapped");
-        },
-        child: Material(
-          color: Color.fromRGBO(143, 140, 251, 1),
-          elevation: 10.0,
-          borderRadius: BorderRadius.circular(20.0),
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10.0,
-                  ),
-                  child: Material(
-                    elevation: 5.0,
-                    borderRadius: BorderRadius.circular(100.0),
-                    child: Container(
-                      height: 200.0,
-                      width: 200.0,
-                      child: ClipOval(
-                        child: Image(
-                          fit: BoxFit.contain,
-                          image: AssetImage(
-                            image,
+          onTap: () {
+            debugPrint("Card Tapped");
+          },
+          child: Material(
+              color: Color.fromRGBO(143, 140, 251, 1),
+              elevation: 10.0,
+              borderRadius: BorderRadius.circular(20.0),
+              child: Container(
+                  child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10.0,
+                    ),
+                    child: Material(
+                      elevation: 5.0,
+                      borderRadius: BorderRadius.circular(100.0),
+                      child: Container(
+                        height: 200.0,
+                        width: 200.0,
+                        child: ClipOval(
+                          child: Image(
+                            fit: BoxFit.contain,
+                            image: AssetImage(
+                              image,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Center(
-                  child: Text(
-                    kapitelname,
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      color: Colors.white,
-                      fontFamily: "Quando",
-                      fontWeight: FontWeight.w600,
+                  Center(
+                    child: Text(
+                      kapitelname,
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        color: Colors.white,
+                        fontFamily: "Quando",
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text(
-                    "Dies ist eine Beschreibung \nkdhahskldaksdhlkashdkjsadhjk\nhakdhakhdkjdhkjad \njhdjagdgajhdjhg",
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.white,
-                      fontFamily: "Alike",
+                  Container(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      "Dies ist eine Beschreibung \nkdhahskldaksdhlkashdkjsadhjk\nhakdhakhdkjdhkjad \njhdjagdgajhdjhg",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                        fontFamily: "Alike",
+                      ),
+                      maxLines: 5,
+                      textAlign: TextAlign.justify,
                     ),
-                    maxLines: 5,
-                    textAlign: TextAlign.justify,
                   ),
-                ),
-              ],
-            )
-          )
-        )
-      ),
+                ],
+              )))),
     );
   }
 
@@ -131,7 +127,7 @@ class _HomepageState extends State<Homepage> {
           milliseconds: 200,
         ),
         index: 1,
-        onTap: (index){
+        onTap: (index) {
           debugPrint("Currrent Index is $index");
         },
       ),
@@ -143,10 +139,10 @@ class PopupMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<Menuoption>(
-      onSelected: (Menuoption option){
+      onSelected: (Menuoption option) {
         print(option.toString());
       },
-      itemBuilder: (BuildContext context){
+      itemBuilder: (BuildContext context) {
         return <PopupMenuEntry<Menuoption>>[
           PopupMenuItem(
             child: Text("Moodle"),
@@ -156,7 +152,7 @@ class PopupMenu extends StatelessWidget {
             child: Text("Über mich"),
             value: Menuoption.AppShare,
           ),
-           PopupMenuItem(
+          PopupMenuItem(
             child: Text("Exit"),
             value: Menuoption.About,
           ),
@@ -166,7 +162,7 @@ class PopupMenu extends StatelessWidget {
   }
 }
 
-enum Menuoption{
+enum Menuoption {
   Profil,
   SignOut,
   AppShare,
