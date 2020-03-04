@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
+class Loginpage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginpageState createState() => _LoginpageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     bool _rememberMe = false;
@@ -321,7 +321,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildSignupBtn() {
     return GestureDetector(
-      onTap: () => print('Registrieren Button angeklickt'),
+      onTap: (){
+        Navigator.of(context).pushNamed('/signuppage');
+      },
       child: RichText(
         text: TextSpan(
           children: [

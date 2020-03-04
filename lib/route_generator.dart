@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bsk_app/home/home.dart';
 import 'package:bsk_app/login/login.dart';
 import 'package:bsk_app/splash/splash.dart';
+import 'package:bsk_app/signup/signup.dart';
 
 class RouteGenerator {
 
@@ -23,7 +24,9 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (_) => Splashscreen());
       case '/loginpage':
-        return MaterialPageRoute(builder: (_) => LoginPage());
+        return MaterialPageRoute(builder: (_) => Loginpage());
+      case '/signuppage':
+        return MaterialPageRoute(builder: (_) => Signuppage());
       case '/homepage':
         return MaterialPageRoute(builder: (_) => Homepage());
       default:
