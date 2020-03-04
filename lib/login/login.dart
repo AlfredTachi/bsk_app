@@ -158,9 +158,10 @@ class _LoginPageState extends State<LoginPage> {
                           data: ThemeData(unselectedWidgetColor: Colors.white),
                           child: Checkbox(
                             value: _rememberMe,
-                            checkColor: Colors.red,
+                            checkColor: Colors.deepPurpleAccent,
                             activeColor: Colors.white,
-                            onChanged: (value) {
+                            onChanged: (bool value) {
+                              print(value);
                               setState(() {
                                 _rememberMe = value;
                               });
