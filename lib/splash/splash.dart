@@ -24,11 +24,11 @@ class _SplashscreenState extends State<Splashscreen> {
       backgroundColor: Color.fromRGBO(143, 148, 251, 1),
       body: Center(
         child: Text(
-          "BSK Quiz ...",
+          'BSK Quiz ...',
           style: TextStyle(
             fontSize: 50.0,
             color: Colors.white,
-            fontFamily: "Satisfy",
+            fontFamily: 'Satisfy',
           ),
         ),
       ),

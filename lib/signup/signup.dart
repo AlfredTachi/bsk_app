@@ -18,7 +18,7 @@ class _SignuppageState extends State<Signuppage> {
               height: 300,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("images/background.png"),
+                    image: AssetImage('images/background.png'),
                     fit: BoxFit.fill),
               ),
               child: Stack(
@@ -30,7 +30,7 @@ class _SignuppageState extends State<Signuppage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("images/light-1.png")),
+                            image: AssetImage('images/light-1.png')),
                       ),
                     ),
                   ),
@@ -41,7 +41,7 @@ class _SignuppageState extends State<Signuppage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("images/light-2.png")),
+                            image: AssetImage('images/light-2.png')),
                       ),
                     ),
                   ),
@@ -53,7 +53,7 @@ class _SignuppageState extends State<Signuppage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("images/clock.png")),
+                            image: AssetImage('images/clock.png')),
                       ),
                     ),
                   ),
@@ -62,11 +62,11 @@ class _SignuppageState extends State<Signuppage> {
                       margin: EdgeInsets.only(top: 50.0),
                       child: Center(
                         child: Text(
-                          "Registrieren",
+                          'Registrieren',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 40,
-                              fontFamily: "Quando",
+                              fontFamily: 'Quando',
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -105,10 +105,10 @@ class _SignuppageState extends State<Signuppage> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
-                                hintText: "Benutzername",
+                                hintText: 'Benutzername',
                                 hintStyle: TextStyle(
                                     color: Colors.grey[400],
-                                    fontFamily: "Quando"),
+                                    fontFamily: 'Quando'),
                                 prefixIcon: Icon(Icons.person,
                                     color: Colors.deepPurpleAccent)),
                           ),
@@ -122,10 +122,10 @@ class _SignuppageState extends State<Signuppage> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
-                                hintText: "Email-Adresse",
+                                hintText: 'Email-Adresse',
                                 hintStyle: TextStyle(
                                   color: Colors.grey[400],
-                                  fontFamily: "Quando",
+                                  fontFamily: 'Quando',
                                 ),
                                 prefixIcon: Icon(Icons.email,
                                     color: Colors.deepPurpleAccent)),
@@ -138,10 +138,10 @@ class _SignuppageState extends State<Signuppage> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
-                                hintText: "Passwort",
+                                hintText: 'Passwort',
                                 hintStyle: TextStyle(
                                   color: Colors.grey[400],
-                                  fontFamily: "Quando",
+                                  fontFamily: 'Quando',
                                 ),
                                 prefixIcon: Icon(Icons.lock,
                                     color: Colors.deepPurpleAccent)),
@@ -155,8 +155,8 @@ class _SignuppageState extends State<Signuppage> {
                   ),
                   MaterialButton(
                     onPressed: () {
-                      // Navigator.of(context).pushNamed("/profilpage");
-                      print("Daten submitet");
+                      // Navigator.of(context).pushNamed('/profilpage');
+                      print('Daten submitet');
                     },
                     elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),
@@ -169,11 +169,11 @@ class _SignuppageState extends State<Signuppage> {
                       height: 50,
                       child: Center(
                         child: Text(
-                          "Registrieren",
+                          'Registrieren',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontFamily: "Quando",
+                            fontFamily: 'Quando',
                           ),
                         ),
                       ),
@@ -209,7 +209,7 @@ class _SignuppageState extends State<Signuppage> {
                   color: Colors.white,
                   fontSize: 14.0,
                   fontWeight: FontWeight.w400,
-                  fontFamily: "Quando"),
+                  fontFamily: 'Quando'),
             ),
             TextSpan(
               text: 'Sich einloggen',
@@ -217,7 +217,7 @@ class _SignuppageState extends State<Signuppage> {
                   color: Colors.white,
                   fontSize: 14.0,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "Quando"),
+                  fontFamily: 'Quando'),
             ),
           ],
         ),

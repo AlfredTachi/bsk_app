@@ -21,7 +21,7 @@ class _LoginpageState extends State<Loginpage> {
               height: 300,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("images/background.png"),
+                    image: AssetImage('images/background.png'),
                     fit: BoxFit.fill),
               ),
               child: Stack(
@@ -33,7 +33,7 @@ class _LoginpageState extends State<Loginpage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("images/light-1.png")),
+                            image: AssetImage('images/light-1.png')),
                       ),
                     ),
                   ),
@@ -44,7 +44,7 @@ class _LoginpageState extends State<Loginpage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("images/light-2.png")),
+                            image: AssetImage('images/light-2.png')),
                       ),
                     ),
                   ),
@@ -56,7 +56,7 @@ class _LoginpageState extends State<Loginpage> {
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("images/clock.png")),
+                            image: AssetImage('images/clock.png')),
                       ),
                     ),
                   ),
@@ -65,11 +65,11 @@ class _LoginpageState extends State<Loginpage> {
                       margin: EdgeInsets.only(top: 50.0),
                       child: Center(
                         child: Text(
-                          "Einloggen",
+                          'Einloggen',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 40,
-                              fontFamily: "Quando",
+                              fontFamily: 'Quando',
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -108,10 +108,10 @@ class _LoginpageState extends State<Loginpage> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
-                                hintText: "Email-Adresse",
+                                hintText: 'Email-Adresse',
                                 hintStyle: TextStyle(
                                     color: Colors.grey[400],
-                                    fontFamily: "Quando"),
+                                    fontFamily: 'Quando'),
                                 prefixIcon: Icon(Icons.email,
                                     color: Colors.deepPurpleAccent)),
                           ),
@@ -123,10 +123,10 @@ class _LoginpageState extends State<Loginpage> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
-                                hintText: "Passwort",
+                                hintText: 'Passwort',
                                 hintStyle: TextStyle(
                                   color: Colors.grey[400],
-                                  fontFamily: "Quando",
+                                  fontFamily: 'Quando',
                                 ),
                                 prefixIcon: Icon(Icons.lock,
                                     color: Colors.deepPurpleAccent)),
@@ -139,13 +139,13 @@ class _LoginpageState extends State<Loginpage> {
                     alignment: Alignment.centerRight,
                     child: FlatButton(
                       onPressed: () =>
-                          print("Passwort-vergessen-Button angeklickt"),
+                          print('Passwort-vergessen-Button angeklickt'),
                       padding: EdgeInsets.only(right: 0.0),
                       child: Text(
-                        "Passwort vergessen?",
+                        'Passwort vergessen?',
                         style: TextStyle(
                           color: Colors.white,
-                          fontFamily: "Quando",
+                          fontFamily: 'Quando',
                         ),
                       ),
                     ),
@@ -172,7 +172,7 @@ class _LoginpageState extends State<Loginpage> {
                           'Zugangsdaten speichern',
                           style: TextStyle(
                             color: Colors.white,
-                            fontFamily: "Quando",
+                            fontFamily: 'Quando',
                           ),
                         ),
                       ],
@@ -183,7 +183,7 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                   MaterialButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed("/profilpage");
+                      Navigator.of(context).pushNamed('/profilpage');
                     },
                     elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),
@@ -196,11 +196,11 @@ class _LoginpageState extends State<Loginpage> {
                       height: 50,
                       child: Center(
                         child: Text(
-                          "Einloggen",
+                          'Einloggen',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontFamily: "Quando",
+                            fontFamily: 'Quando',
                           ),
                         ),
                       ),
@@ -211,7 +211,7 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                   MaterialButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed("/homepage");
+                      Navigator.of(context).pushNamed('/homepage');
                     },
                     elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),
@@ -224,11 +224,11 @@ class _LoginpageState extends State<Loginpage> {
                       height: 50,
                       child: Center(
                         child: Text(
-                          "Weiter ohne Registrierung",
+                          'Weiter ohne Registrierung',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontFamily: "Quando",
+                            fontFamily: 'Quando',
                           ),
                         ),
                       ),
@@ -260,13 +260,13 @@ class _LoginpageState extends State<Loginpage> {
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w400,
-            fontFamily: "Quando",
+            fontFamily: 'Quando',
           ),
         ),
         SizedBox(height: 20.0),
         Text(
           'Einloggen mit',
-          style: TextStyle(color: Colors.white, fontFamily: "Quando"),
+          style: TextStyle(color: Colors.white, fontFamily: 'Quando'),
         ),
       ],
     );
@@ -333,7 +333,7 @@ class _LoginpageState extends State<Loginpage> {
                   color: Colors.white,
                   fontSize: 14.0,
                   fontWeight: FontWeight.w400,
-                  fontFamily: "Quando"),
+                  fontFamily: 'Quando'),
             ),
             TextSpan(
               text: 'Registrieren',
@@ -341,7 +341,7 @@ class _LoginpageState extends State<Loginpage> {
                   color: Colors.white,
                   fontSize: 14.0,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "Quando"),
+                  fontFamily: 'Quando'),
             ),
           ],
         ),

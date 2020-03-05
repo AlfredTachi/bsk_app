@@ -8,14 +8,14 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   List<String> images = [
-    "images/01_BS_GL.png",
-    "images/02_Process-thread.png",
-    "images/03_ipc.png",
-    "images/04_scheduler.png",
-    "images/05_speicher.png",
-    "images/06_file-system.png",
-    "images/07_IT-Sicherheit.png",
-    "images/examQuestion.png",
+    'images/01_BS_GL.png',
+    'images/02_Process-thread.png',
+    'images/03_ipc.png',
+    'images/04_scheduler.png',
+    'images/05_speicher.png',
+    'images/06_file-system.png',
+    'images/07_IT-Sicherheit.png',
+    'images/examQuestion.png',
   ];
 
   Widget customcard(String kapitelname, String image) {
@@ -25,7 +25,7 @@ class _HomepageState extends State<Homepage> {
       ),
       child: InkWell(
           onTap: () {
-            debugPrint("Card Tapped");
+            debugPrint('Card Tapped');
           },
           child: Material(
               color: Color.fromRGBO(143, 140, 251, 1),
@@ -61,7 +61,7 @@ class _HomepageState extends State<Homepage> {
                       style: TextStyle(
                         fontSize: 24.0,
                         color: Colors.white,
-                        fontFamily: "Quando",
+                        fontFamily: 'Quando',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -69,11 +69,11 @@ class _HomepageState extends State<Homepage> {
                   Container(
                     padding: EdgeInsets.all(20.0),
                     child: Text(
-                      "Dies ist eine Beschreibung \nkdhahskldaksdhlkashdkjsadhjk\nhakdhakhdkjdhkjad \njhdjagdgajhdjhg",
+                      'Dies ist eine Beschreibung \nkdhahskldaksdhlkashdkjsadhjk\nhakdhakhdkjdhkjad \njhdjagdgajhdjhg',
                       style: TextStyle(
                         fontSize: 18.0,
                         color: Colors.white,
-                        fontFamily: "Alike",
+                        fontFamily: 'Alike',
                       ),
                       maxLines: 5,
                       textAlign: TextAlign.justify,
@@ -90,9 +90,9 @@ class _HomepageState extends State<Homepage> {
       backgroundColor: Colors.deepPurple,
       appBar: AppBar(
         title: Text(
-          "BskQuiz",
+          'BskQuiz',
           style: TextStyle(
-            fontFamily: "Qando",
+            fontFamily: 'Qando',
           ),
         ),
         elevation: 20.0,
@@ -103,14 +103,14 @@ class _HomepageState extends State<Homepage> {
       ),
       body: ListView(
         children: <Widget>[
-          customcard("Einführung & Grundlagen", images[0]),
-          customcard("Prozesse und Threads", images[1]),
-          customcard("IPC und Race Conditions", images[2]),
-          customcard("Scheduling", images[3]),
-          customcard("Speicherverwaltung", images[4]),
-          customcard("Dateisysteme", images[5]),
-          customcard("IT-Sicherheit", images[6]),
-          customcard("Alte Klausurfragen", images[7]),
+          customcard('Einführung & Grundlagen', images[0]),
+          customcard('Prozesse und Threads', images[1]),
+          customcard('IPC und Race Conditions', images[2]),
+          customcard('Scheduling', images[3]),
+          customcard('Speicherverwaltung', images[4]),
+          customcard('Dateisysteme', images[5]),
+          customcard('IT-Sicherheit', images[6]),
+          customcard('Alte Klausurfragen', images[7]),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
@@ -128,7 +128,7 @@ class _HomepageState extends State<Homepage> {
         ),
         index: 1,
         onTap: (index) {
-          debugPrint("Currrent Index is $index");
+          debugPrint('Currrent Index is $index');
         },
       ),
     );
@@ -145,15 +145,15 @@ class PopupMenu extends StatelessWidget {
       itemBuilder: (BuildContext context) {
         return <PopupMenuEntry<Menuoption>>[
           PopupMenuItem(
-            child: Text("Moodle"),
+            child: Text('Moodle'),
             value: Menuoption.Profil,
           ),
           PopupMenuItem(
-            child: Text("Über mich"),
+            child: Text('Über mich'),
             value: Menuoption.AppShare,
           ),
           PopupMenuItem(
-            child: Text("Exit"),
+            child: Text('Exit'),
             value: Menuoption.About,
           ),
         ];
