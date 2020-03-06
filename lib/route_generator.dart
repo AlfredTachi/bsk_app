@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:bsk_app/home/home.dart';
-import 'package:bsk_app/login/login.dart';
-import 'package:bsk_app/splash/splash.dart';
-import 'package:bsk_app/signup/signup.dart';
+import 'package:bsk_app/screens/home/home.dart';
+import 'package:bsk_app/screens/login/login.dart';
+import 'package:bsk_app/screens/splash/splash.dart';
+import 'package:bsk_app/screens/signup/signup.dart';
 
 class RouteGenerator {
 
