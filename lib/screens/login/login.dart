@@ -8,7 +8,6 @@ class Loginpage extends StatefulWidget {
 class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
-    bool _rememberMe = false;
     return Scaffold(
       // fix overflow when keyboard is opening
       // resizeToAvoidBottomInset: false,
