@@ -120,7 +120,7 @@ class _HomepageState extends State<Homepage> {
         height: 50,
         items: <Widget>[
           Icon(Icons.share, size: 20, color: Colors.deepPurple),
-          Icon(Icons.info, size: 20, color: Colors.deepPurple),
+          Icon(Icons.help, size: 20, color: Colors.deepPurple),
           Icon(Icons.person, size: 20, color: Colors.deepPurple)
         ],
         animationDuration: Duration(
