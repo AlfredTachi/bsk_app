@@ -119,8 +119,8 @@ class _HomepageState extends State<Homepage> {
         buttonBackgroundColor: Colors.white,
         height: 50,
         items: <Widget>[
-          Icon(Icons.search, size: 20, color: Colors.deepPurple),
           Icon(Icons.share, size: 20, color: Colors.deepPurple),
+          Icon(Icons.info, size: 20, color: Colors.deepPurple),
           Icon(Icons.person, size: 20, color: Colors.deepPurple)
         ],
         animationDuration: Duration(
