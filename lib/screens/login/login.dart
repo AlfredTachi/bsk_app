@@ -1,11 +1,20 @@
+import 'package:bsk_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatefulWidget {
+
   @override
   _LoginpageState createState() => _LoginpageState();
 }
 
 class _LoginpageState extends State<Loginpage> {
+  
+  final AuthService _auth = AuthService();
+  
+  // text field state
+  String email = '';
+  String password = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,6 +113,11 @@ class _LoginpageState extends State<Loginpage> {
                                   bottom: BorderSide(color: Colors.grey[100]))),
                           child: TextField(
                             keyboardType: TextInputType.emailAddress,
+                            onChanged: (value) {
+                              setState(() {
+                                email = value;
+                              });
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
@@ -119,6 +133,11 @@ class _LoginpageState extends State<Loginpage> {
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
                             obscureText: true,
+                            onChanged: (value) {
+                              setState(() {
+                                password = value;
+                              });
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
@@ -153,8 +172,9 @@ class _LoginpageState extends State<Loginpage> {
                     height: 20,
                   ),
                   MaterialButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/profilpage');
+                    onPressed: () async {
+                      print(email);
+                      print(password);
                     },
                     elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),
@@ -195,7 +215,7 @@ class _LoginpageState extends State<Loginpage> {
                       height: 50,
                       child: Center(
                         child: Text(
-                          'Weiter ohne Registrierung',
+                          'Weiter als Gast',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -254,8 +274,8 @@ class _LoginpageState extends State<Loginpage> {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black26,
-              offset: Offset(0, 2),
+              color: Colors.black,
+              offset: Offset(0, 6),
               blurRadius: 6.0,
             ),
           ],

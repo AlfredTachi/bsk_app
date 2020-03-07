@@ -1,3 +1,4 @@
+import 'package:bsk_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Signuppage extends StatefulWidget {
@@ -6,6 +7,14 @@ class Signuppage extends StatefulWidget {
 }
 
 class _SignuppageState extends State<Signuppage> {
+  
+  final AuthService _auth = AuthService();
+  
+  // text field state
+  String username = '';
+  String email = '';
+  String password = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,6 +111,11 @@ class _SignuppageState extends State<Signuppage> {
                                   bottom: BorderSide(color: Colors.grey[100]))),
                           child: TextField(
                             keyboardType: TextInputType.emailAddress,
+                            onChanged: (value) {
+                              setState(() {
+                                username = value;
+                              });
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
@@ -119,6 +133,11 @@ class _SignuppageState extends State<Signuppage> {
                               border: Border(
                                   bottom: BorderSide(color: Colors.grey[100]))),
                           child: TextField(
+                            onChanged: (value) {
+                              setState(() {
+                                email = value;
+                              });
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
@@ -135,6 +154,11 @@ class _SignuppageState extends State<Signuppage> {
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
                             obscureText: true,
+                            onChanged: (value) {
+                              setState(() {
+                                password = value;
+                              });
+                            },
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
@@ -154,9 +178,10 @@ class _SignuppageState extends State<Signuppage> {
                     height: 30,
                   ),
                   MaterialButton(
-                    onPressed: () {
-                      // Navigator.of(context).pushNamed('/profilpage');
-                      print('Daten submitet');
+                    onPressed: () async {
+                      print(username);
+                      print(email);
+                      print(password);
                     },
                     elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),
@@ -197,7 +222,7 @@ class _SignuppageState extends State<Signuppage> {
 
   Widget _buildSignInBtn() {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.of(context).pushNamed('/loginpage');
       },
       child: RichText(
