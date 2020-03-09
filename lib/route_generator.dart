@@ -3,6 +3,7 @@ import 'package:bsk_app/screens/home/home.dart';
 import 'package:bsk_app/screens/login/login.dart';
 import 'package:bsk_app/screens/splash/splash.dart';
 import 'package:bsk_app/screens/signup/signup.dart';
+import 'package:bsk_app/screens/profile/profile.dart';
 
 class RouteGenerator {
 
@@ -29,6 +30,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Signuppage());
       case '/homepage':
         return MaterialPageRoute(builder: (_) => Homepage());
+      case '/profilepage':
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
       default:
         return _errorRoute();
     }

@@ -1,4 +1,4 @@
-import 'package:bsk_app/services/auth.dart';
+//import 'package:bsk_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Signuppage extends StatefulWidget {
@@ -8,7 +8,7 @@ class Signuppage extends StatefulWidget {
 
 class _SignuppageState extends State<Signuppage> {
   
-  final AuthService _auth = AuthService();
+  // final AuthService _firebaseAuth = AuthService();
   
   // text field state
   String username = '';

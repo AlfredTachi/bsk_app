@@ -1,19 +1,56 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:rxdart/rxdart.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  ///final Firestore _db = Firestore.instance;
+  String name;
+  String email;
+  String imageUrl;
 
   Future<FirebaseUser> get getUser => _firebaseAuth.currentUser();
 
   Stream<FirebaseUser> get user => _firebaseAuth.onAuthStateChanged;
 
-  // Stream<String> get onAuthStateChanged => _firebaseAuth.onAuthStateChanged.map(
-  //   (FirebaseUser user) => user?.uid,
+  // Sign in with google
+  // GoogleSignIn _googleSignIn = GoogleSignIn(
+  //   scopes: [
+  //     'email',
+  //     'https://www.googleapis.com/auth/contacts.readonly',
+  //   ],
   // );
+  // Future<String> signInWithGoogle() async {
+  //     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+  //     final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      
+  //     if (googleUser == null) return null;
+  //     final AuthCredential credential = GoogleAuthProvider.getCredential(
+  //       idToken:  googleAuth.idToken,
+  //       accessToken:  googleAuth.accessToken,
+  //     );
+
+  //     final FirebaseUser user = (await _firebaseAuth.signInWithCredential(credential)).user;
+
+  //     // checking if users info not null
+  //     if (user.displayName != null) name = user.displayName;
+  //     if (user.email != null) email = user.email;
+  //     if (user.photoUrl != null) imageUrl = user.photoUrl;
+
+  //     if (!user.isAnonymous && await user.getIdToken() != null){
+  //       final FirebaseUser currentUser = await _firebaseAuth.currentUser();
+  //       if(user.uid == currentUser.uid) {
+  //         return 'sign in with google succeeded: $user';
+  //       }
+  //     }
+  //     return null;
+  // }
+
+  void updateUserData(FirebaseUser user) async {
+
+  }
+
 
   // Email and Password Sign Up
   Future<FirebaseUser> createUserWithEmailAndPassword(
@@ -38,6 +75,7 @@ class AuthService {
       FirebaseUser user = (await _firebaseAuth.signInWithEmailAndPassword(
               email: email, password: password))
           .user;
+
       return user;
     } catch (err) {
       print(err.toString());
@@ -56,35 +94,6 @@ class AuthService {
     }
   }
 
-  // Sign in with google
-  Future<FirebaseUser> googleSignIn() async {
-    try {
-      GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
-      GoogleSignInAuthentication googleAuth =
-          await googleSignInAccount.authentication;
-
-      final AuthCredential credential = GoogleAuthProvider.getCredential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      FirebaseUser user =
-          (await _firebaseAuth.signInWithCredential(credential)).user;
-      updateUserData(user);
-
-      return user;
-    } catch (error) {
-      print(error);
-      return null;
-    }
-  }
-
-  Future<void> updateUserData(FirebaseUser user) {
-    DocumentReference reportRef = _db.collection('reports').document(user.uid);
-
-    return reportRef.setData({'uid': user.uid, 'lastActivity': DateTime.now()},
-        merge: true);
-  }
 
   // Sign Out
   Future<void> signOut() async {
