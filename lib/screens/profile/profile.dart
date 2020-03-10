@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:bsk_app/services/googleSignIn.dart';
-import 'package:bsk_app/screens/login/login.dart';
 
 class ProfileScreen extends StatelessWidget {
 
