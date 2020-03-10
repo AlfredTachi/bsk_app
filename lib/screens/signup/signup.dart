@@ -1,5 +1,6 @@
-//import 'package:bsk_app/services/auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:bsk_app/services/auth.dart';
 
 class Signuppage extends StatefulWidget {
   @override
@@ -8,12 +9,20 @@ class Signuppage extends StatefulWidget {
 
 class _SignuppageState extends State<Signuppage> {
   
-  // final AuthService _firebaseAuth = AuthService();
+  String username, email, password;
   
-  // text field state
-  String username = '';
-  String email = '';
-  String password = '';
+  final AuthService _firebaseAuth = AuthService();
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _usernameController = TextEditingController(text: "");
+    _emailController = TextEditingController(text: "");
+    _passwordController = TextEditingController(text: "");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,12 +119,11 @@ class _SignuppageState extends State<Signuppage> {
                               border: Border(
                                   bottom: BorderSide(color: Colors.grey[100]))),
                           child: TextField(
-                            keyboardType: TextInputType.emailAddress,
                             onChanged: (value) {
-                              setState(() {
-                                username = value;
-                              });
+                              username = value;
                             },
+                            controller: _usernameController,
+                            keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
@@ -133,10 +141,9 @@ class _SignuppageState extends State<Signuppage> {
                               border: Border(
                                   bottom: BorderSide(color: Colors.grey[100]))),
                           child: TextField(
+                            controller: _emailController,
                             onChanged: (value) {
-                              setState(() {
-                                email = value;
-                              });
+                              email = value;
                             },
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -153,12 +160,11 @@ class _SignuppageState extends State<Signuppage> {
                         Container(
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
-                            obscureText: true,
                             onChanged: (value) {
-                              setState(() {
-                                password = value;
-                              });
+                              password = value;
                             },
+                            controller: _passwordController,
+                            obscureText: true,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
@@ -179,9 +185,7 @@ class _SignuppageState extends State<Signuppage> {
                   ),
                   MaterialButton(
                     onPressed: () async {
-                      print(username);
-                      print(email);
-                      print(password);
+                      _firebaseAuth.createUserWithEmailAndPassword(_usernameController.text, _emailController.text, _passwordController.text);
                     },
                     elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),

@@ -33,17 +33,21 @@ final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
       final FirebaseUser user = (await _firebaseAuth.signInWithCredential(credential)).user;
 
       // checking if users info not null
-      if (user.displayName != null) name = user.displayName;
-      if (user.email != null) email = user.email;
-      if (user.photoUrl != null) imageUrl = user.photoUrl;
+      assert(user.displayName != null);
+      assert(user.email != null);
+      assert(user.photoUrl != null);
 
-      if (!user.isAnonymous && await user.getIdToken() != null){
-        final FirebaseUser currentUser = await _firebaseAuth.currentUser();
-        if(user.uid == currentUser.uid) {
-          return 'sign in with google succeeded: $user';
-        }
-      }
-      return null;
+      name = user.displayName;
+      email = user.email;
+      imageUrl = user.photoUrl;
+
+      assert(!user.isAnonymous); 
+      assert(await user.getIdToken() != null);
+
+      final FirebaseUser currentUser = await _firebaseAuth.currentUser();
+      assert(user.uid == currentUser.uid);
+      
+      return 'sign in with google succeeded: $user';
   }
 
   Future<String> signOutGoogle() async {

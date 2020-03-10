@@ -172,7 +172,7 @@ class _LoginpageState extends State<Loginpage> {
                     onPressed: () async {
                       if (_emailController.text.isEmpty ||
                           _passwordController.text.isEmpty) {
-                        print("Email and password cannot be empty");
+                        print('Email and password cannot be empty');
                         return;
                       }
                       FirebaseUser user = await AuthService()
@@ -315,7 +315,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
           ),
           _buildSocialBtn(
-            () async {
+            () {
               signInWithGoogle().whenComplete((){
                 Navigator.of(context).pushNamed('/profilepage');
               });             
