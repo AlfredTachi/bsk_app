@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:bsk_app/home/home.dart';
-import 'package:bsk_app/login/login.dart';
-import 'package:bsk_app/splash/splash.dart';
-import 'package:bsk_app/signup/signup.dart';
+import 'package:bsk_app/screens/home/home.dart';
+import 'package:bsk_app/screens/authenticate/login/login.dart';
+import 'package:bsk_app/screens/splash/splash.dart';
+import 'package:bsk_app/screens/authenticate/signup/signup.dart';
+import 'package:bsk_app/screens/profile/profile.dart';
 
 class RouteGenerator {
 
@@ -29,6 +30,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Signuppage());
       case '/homepage':
         return MaterialPageRoute(builder: (_) => Homepage());
+      case '/profilepage':
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
       default:
         return _errorRoute();
     }
