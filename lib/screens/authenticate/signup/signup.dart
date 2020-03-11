@@ -145,6 +145,7 @@ class _SignuppageState extends State<Signuppage> {
                             onChanged: (value) {
                               _email = value;
                             },
+                            keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.only(top: 14.0),
