@@ -1,3 +1,4 @@
+import 'package:bsk_app/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bsk_app/services/auth.dart';
@@ -179,8 +180,10 @@ class _LoginpageState extends State<Loginpage> {
                           .signInWithEmailAndPassword(
                               _emailController.text, _passwordController.text);
                       if (user == null) {
-                        print("Login failed");
+                        print('Login failed');
                       } else {
+                        print('signed in with email');
+                        print(user.uid);
                         Navigator.of(context).pushNamed('/homepage');
                       }
                     },
@@ -210,15 +213,15 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                   MaterialButton(
                     onPressed: () async {
-                      FirebaseUser user = await _firebaseAuth.anonLogin();
-                      if (user == null) {
+                      User userFromFirebaseUser =
+                          await _firebaseAuth.anonLogin();
+                      if (userFromFirebaseUser == null) {
                         print('error signing in');
                       } else {
                         print('anonym signed in');
-                        print(user.uid);
+                        print(userFromFirebaseUser.uid);
                         Navigator.of(context).pushNamed('/homepage');
                       }
-
                     },
                     elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),
@@ -317,9 +320,9 @@ class _LoginpageState extends State<Loginpage> {
           ),
           _buildSocialBtn(
             () {
-              signInWithGoogle().whenComplete((){
+              signInWithGoogle().whenComplete(() {
                 Navigator.of(context).pushNamed('/profilepage');
-              });             
+              });
             },
             AssetImage(
               'images/googlelogo.png',

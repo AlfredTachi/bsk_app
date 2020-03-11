@@ -1,3 +1,4 @@
+import 'package:bsk_app/services/auth.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,9 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
+  final AuthService _firebaseAuth = AuthService();
+
   List<String> images = [
     'images/01_BS_GL.png',
     'images/02_Process-thread.png',
@@ -98,7 +102,21 @@ class _HomepageState extends State<Homepage> {
         elevation: 20.0,
         centerTitle: true,
         actions: <Widget>[
-          PopupMenu(),
+          FlatButton.icon(
+            icon: Icon(
+              Icons.exit_to_app,
+              color: Colors.white,
+            ),
+            label: Text(
+              'logOut',
+              style: TextStyle(color: Colors.white),
+            ),
+            onPressed: () async {
+              await _firebaseAuth.signOut();
+              Navigator.of(context).pushNamed('/loginpage');
+              print('user signed out');
+            },
+          ),
         ],
       ),
       body: ListView(
@@ -135,36 +153,3 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
-class PopupMenu extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return PopupMenuButton<Menuoption>(
-      onSelected: (Menuoption option) {
-        print(option.toString());
-      },
-      itemBuilder: (BuildContext context) {
-        return <PopupMenuEntry<Menuoption>>[
-          PopupMenuItem(
-            child: Text('Moodle'),
-            value: Menuoption.Profil,
-          ),
-          PopupMenuItem(
-            child: Text('Über mich'),
-            value: Menuoption.AppShare,
-          ),
-          PopupMenuItem(
-            child: Text('Exit'),
-            value: Menuoption.About,
-          ),
-        ];
-      },
-    );
-  }
-}
-
-enum Menuoption {
-  Profil,
-  SignOut,
-  AppShare,
-  About,
-}

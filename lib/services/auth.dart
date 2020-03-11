@@ -20,9 +20,10 @@ class AuthService {
   // Sign Out
   Future<void> signOut() async {
     try {
-      await _firebaseAuth.signOut();
+      return await _firebaseAuth.signOut();
     } catch (e) {
       print('error logging out');
+      return null;
     }
   }
   // sign in anon
@@ -31,7 +32,7 @@ class AuthService {
       FirebaseUser user = (await _firebaseAuth.signInAnonymously()).user;
       return _userFromFirebaseUer(user);
     } catch (err) {
-      print(err.toString());
+      print(err + 'error creating anon user');
       return null;
     }
   }
