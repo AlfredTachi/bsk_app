@@ -1,4 +1,5 @@
 //import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bsk_app/services/auth.dart';
 
@@ -8,20 +9,21 @@ class Signuppage extends StatefulWidget {
 }
 
 class _SignuppageState extends State<Signuppage> {
-  
-  String username, email, password;
-  
-  final AuthService _firebaseAuth = AuthService();
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  AuthService _firebaseAuth = AuthService();
+  String _username, _email, _password;
+  final formKey = GlobalKey<FormState>();
 
-  @override
-  void initState() {
-    super.initState();
-    _usernameController = TextEditingController(text: "");
-    _emailController = TextEditingController(text: "");
-    _passwordController = TextEditingController(text: "");
+  void submit() async {
+    final form = formKey.currentState;
+    form.save();
+    FirebaseUser user = await _firebaseAuth.createUserWithEmailAndPassword(
+        _username, _email, _password);
+    if (user == null) {
+      print('error creating User');
+    } else {
+      print('new user signing in');
+      Navigator.of(context).pushNamed('/homepage');
+    }
   }
 
   @override
@@ -120,9 +122,8 @@ class _SignuppageState extends State<Signuppage> {
                                   bottom: BorderSide(color: Colors.grey[100]))),
                           child: TextField(
                             onChanged: (value) {
-                              username = value;
+                              _username = value;
                             },
-                            controller: _usernameController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -141,9 +142,8 @@ class _SignuppageState extends State<Signuppage> {
                               border: Border(
                                   bottom: BorderSide(color: Colors.grey[100]))),
                           child: TextField(
-                            controller: _emailController,
                             onChanged: (value) {
-                              email = value;
+                              _email = value;
                             },
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -161,9 +161,8 @@ class _SignuppageState extends State<Signuppage> {
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
                             onChanged: (value) {
-                              password = value;
+                              _password = value;
                             },
-                            controller: _passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -185,7 +184,7 @@ class _SignuppageState extends State<Signuppage> {
                   ),
                   MaterialButton(
                     onPressed: () async {
-                      _firebaseAuth.createUserWithEmailAndPassword(_usernameController.text, _emailController.text, _passwordController.text);
+                      submit();
                     },
                     elevation: 10.0,
                     color: Color.fromRGBO(143, 148, 251, 1),

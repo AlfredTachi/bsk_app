@@ -50,6 +50,10 @@ final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
       return 'sign in with google succeeded: $user';
   }
 
+    void updateUserData(FirebaseUser user) async {
+
+  }
+
   Future<String> signOutGoogle() async {
     try {
       await googleSignIn.signOut();

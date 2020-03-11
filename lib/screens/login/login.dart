@@ -214,7 +214,8 @@ class _LoginpageState extends State<Loginpage> {
                       if (user == null) {
                         print('error signing in');
                       } else {
-                        print('anonym signing in');
+                        print('anonym signed in');
+                        print(user.uid);
                         Navigator.of(context).pushNamed('/homepage');
                       }
 
