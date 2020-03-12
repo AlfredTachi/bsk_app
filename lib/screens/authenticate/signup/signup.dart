@@ -1,5 +1,4 @@
-//import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bsk_app/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:bsk_app/services/auth.dart';
 
@@ -9,22 +8,16 @@ class Signuppage extends StatefulWidget {
 }
 
 class _SignuppageState extends State<Signuppage> {
-  AuthService _firebaseAuth = AuthService();
-  String _username, _email, _password;
-  final formKey = GlobalKey<FormState>();
+  // String _username, _email, _password;
 
-  void submit() async {
-    final form = formKey.currentState;
-    form.save();
-    FirebaseUser user = await _firebaseAuth.createUserWithEmailAndPassword(
-        _username, _email, _password);
-    if (user == null) {
-      print('error creating User');
-    } else {
-      print('new user signing in');
-      Navigator.of(context).pushNamed('/homepage');
-    }
-  }
+  final AuthService _firebaseAuth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+
+  // text fiel state
+  String username = '';
+  String email = '';
+  String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -97,125 +90,159 @@ class _SignuppageState extends State<Signuppage> {
             ),
             Padding(
               padding: EdgeInsets.all(30.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromRGBO(143, 148, 251, 2),
-                            blurRadius: 20.0,
-                            offset: Offset(0, 10),
-                          )
-                        ]),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.grey[100]))),
-                          child: TextField(
-                            onChanged: (value) {
-                              _username = value;
-                            },
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                contentPadding: EdgeInsets.only(top: 14.0),
-                                hintText: 'Benutzername',
-                                hintStyle: TextStyle(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromRGBO(143, 148, 251, 2),
+                              blurRadius: 20.0,
+                              offset: Offset(0, 10),
+                            )
+                          ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom:
+                                        BorderSide(color: Colors.grey[100]))),
+                            child: TextFormField(
+                              validator: (value) =>
+                                  value.isEmpty ? 'Enter an username' : null,
+                              onChanged: (value) {
+                                setState(() {
+                                  username = value;
+                                });
+                              },
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.only(top: 14.0),
+                                  hintText: 'Benutzername',
+                                  hintStyle: TextStyle(
+                                      color: Colors.grey[400],
+                                      fontFamily: 'Quando'),
+                                  prefixIcon: Icon(Icons.person,
+                                      color: Colors.deepPurpleAccent)),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom:
+                                        BorderSide(color: Colors.grey[100]))),
+                            child: TextFormField(
+                              validator: (value) =>
+                                  value.isEmpty ? 'Enter an email' : null,
+                              onChanged: (value) {
+                                setState(() {
+                                  email = value;
+                                });
+                              },
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.only(top: 14.0),
+                                  hintText: 'Email-Adresse',
+                                  hintStyle: TextStyle(
                                     color: Colors.grey[400],
-                                    fontFamily: 'Quando'),
-                                prefixIcon: Icon(Icons.person,
-                                    color: Colors.deepPurpleAccent)),
+                                    fontFamily: 'Quando',
+                                  ),
+                                  prefixIcon: Icon(Icons.email,
+                                      color: Colors.deepPurpleAccent)),
+                            ),
                           ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.grey[100]))),
-                          child: TextField(
-                            onChanged: (value) {
-                              _email = value;
-                            },
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                contentPadding: EdgeInsets.only(top: 14.0),
-                                hintText: 'Email-Adresse',
-                                hintStyle: TextStyle(
-                                  color: Colors.grey[400],
-                                  fontFamily: 'Quando',
-                                ),
-                                prefixIcon: Icon(Icons.email,
-                                    color: Colors.deepPurpleAccent)),
+                          Container(
+                            padding: EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              validator: (value) => value.length < 8
+                                  ? 'Enter a password 8+ chars long'
+                                  : null,
+                              onChanged: (value) {
+                                setState(() {
+                                  password = value;
+                                });
+                              },
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.only(top: 14.0),
+                                  hintText: 'Passwort',
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey[400],
+                                    fontFamily: 'Quando',
+                                  ),
+                                  prefixIcon: Icon(Icons.lock,
+                                      color: Colors.deepPurpleAccent)),
+                            ),
                           ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(8.0),
-                          child: TextField(
-                            onChanged: (value) {
-                              _password = value;
-                            },
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                contentPadding: EdgeInsets.only(top: 14.0),
-                                hintText: 'Passwort',
-                                hintStyle: TextStyle(
-                                  color: Colors.grey[400],
-                                  fontFamily: 'Quando',
-                                ),
-                                prefixIcon: Icon(Icons.lock,
-                                    color: Colors.deepPurpleAccent)),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  MaterialButton(
-                    onPressed: () async {
-                      submit();
-                    },
-                    elevation: 10.0,
-                    color: Color.fromRGBO(143, 148, 251, 1),
-                    splashColor: Colors.deepPurple,
-                    highlightColor: Colors.deepPurple,
-                    padding: EdgeInsets.all(0.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: Container(
-                      height: 50,
-                      child: Center(
-                        child: Text(
-                          'Registrieren',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Quando',
+                    SizedBox(
+                      height: 30,
+                    ),
+                    MaterialButton(
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          try {
+                            User user = await _firebaseAuth
+                                .signUpWithEmailAndPassword(email, password);
+                            if (user == null) {
+                              setState(() {
+                                error = 'Email nicht valide oder bereits verwendet!';
+                              });
+                            }
+                            print('User created uid: ' + user.uid);
+                            Navigator.of(context).pushNamed('/homepage');
+                          }catch (e) {
+                            print(e.toString());
+                          }
+                        }
+                      },
+                      elevation: 10.0,
+                      color: Color.fromRGBO(143, 148, 251, 1),
+                      splashColor: Colors.deepPurple,
+                      highlightColor: Colors.deepPurple,
+                      padding: EdgeInsets.all(0.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: Container(
+                        height: 50,
+                        child: Center(
+                          child: Text(
+                            'Registrieren',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Quando',
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  _buildSignInBtn()
-                ],
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(error,
+                        style: TextStyle(color: Colors.red, fontSize: 14.0)),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    _buildSignInBtn()
+                  ],
+                ),
               ),
             ),
           ],

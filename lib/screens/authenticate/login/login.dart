@@ -10,16 +10,22 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-  final AuthService _firebaseAuth = AuthService();
-  TextEditingController _emailController;
-  TextEditingController _passwordController;
 
-  @override
-  void initState() {
-    super.initState();
-    _emailController = TextEditingController(text: "");
-    _passwordController = TextEditingController(text: "");
-  }
+  final AuthService _firebaseAuth = AuthService();
+
+  // text fiel state
+  String email = '';
+  String password = '';
+  
+  // TextEditingController _emailController;
+  // TextEditingController _passwordController;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _emailController = TextEditingController(text: "");
+  //   _passwordController = TextEditingController(text: "");
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +124,12 @@ class _LoginpageState extends State<Loginpage> {
                               border: Border(
                                   bottom: BorderSide(color: Colors.grey[100]))),
                           child: TextField(
-                            controller: _emailController,
+                            onChanged: (value) {
+                              setState(() {
+                                email = value;
+                              });
+                            },
+                            //controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -134,7 +145,12 @@ class _LoginpageState extends State<Loginpage> {
                         Container(
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
-                            controller: _passwordController,
+                            onChanged: (value) {
+                              setState(() {
+                                password = value;
+                              });
+                            },
+                            //controller: _passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -171,14 +187,14 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                   MaterialButton(
                     onPressed: () async {
-                      if (_emailController.text.isEmpty ||
-                          _passwordController.text.isEmpty) {
+                      if (email.isEmpty ||
+                          password.isEmpty) {
                         print('Email and password cannot be empty');
                         return;
                       }
                       FirebaseUser user = await AuthService()
                           .signInWithEmailAndPassword(
-                              _emailController.text, _passwordController.text);
+                              email, password);
                       if (user == null) {
                         print('Login failed');
                       } else {

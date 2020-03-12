@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bsk_app/models/user.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:rxdart/rxdart.dart';
+
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -37,22 +36,17 @@ class AuthService {
     }
   }
   // Email and Password Sign Up
-  Future<FirebaseUser> createUserWithEmailAndPassword(
-      String email, String password, String name) async {
+  Future<User> signUpWithEmailAndPassword(
+      String email, String password) async {
     try {
-      final FirebaseUser currentUser = (await _firebaseAuth
+      final FirebaseUser user = (await _firebaseAuth
             .createUserWithEmailAndPassword(email: email, password: password))
         .user;
 
-      // Update the username
-      var userUpdateInfo = UserUpdateInfo();
-      userUpdateInfo.displayName = name;
-      await currentUser.updateProfile(userUpdateInfo);
-      await currentUser.reload();
+        return _userFromFirebaseUer(user);
 
-    return currentUser;
     } catch (e) {
-      print("error create User");
+      print("error create User\n" + e.toString());
       return null;
     }
   }
