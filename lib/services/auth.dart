@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bsk_app/models/user.dart';
 
-
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
@@ -12,8 +11,7 @@ class AuthService {
 
   // auth change user stream
   Stream<User> get user {
-    return _firebaseAuth.onAuthStateChanged
-      .map(_userFromFirebaseUer);
+    return _firebaseAuth.onAuthStateChanged.map(_userFromFirebaseUer);
   }
 
   // Sign Out
@@ -25,6 +23,7 @@ class AuthService {
       return null;
     }
   }
+
   // sign in anon
   Future/*<FirebaseUser>*/ anonLogin() async {
     try {
@@ -35,16 +34,15 @@ class AuthService {
       return null;
     }
   }
+
   // Email and Password Sign Up
-  Future<User> signUpWithEmailAndPassword(
-      String email, String password) async {
+  Future<User> signUpWithEmailAndPassword(String email, String password) async {
     try {
       final FirebaseUser user = (await _firebaseAuth
-            .createUserWithEmailAndPassword(email: email, password: password))
-        .user;
+              .createUserWithEmailAndPassword(email: email, password: password))
+          .user;
 
-        return _userFromFirebaseUer(user);
-
+      return _userFromFirebaseUer(user);
     } catch (e) {
       print("error create User\n" + e.toString());
       return null;
@@ -65,7 +63,4 @@ class AuthService {
       return null;
     }
   }
-
-
-
 }

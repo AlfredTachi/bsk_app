@@ -1,6 +1,7 @@
 import 'package:bsk_app/services/auth.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:bsk_app/screens/home/logoutdialogs.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -8,8 +9,8 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
   final AuthService _firebaseAuth = AuthService();
+  bool tappedYes = false;
 
   List<String> images = [
     'images/01_BS_GL.png',
@@ -91,7 +92,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.indigo,
       appBar: AppBar(
         title: Text(
           'BskQuiz',
@@ -108,13 +109,18 @@ class _HomepageState extends State<Homepage> {
               color: Colors.white,
             ),
             label: Text(
-              'logOut',
+              '',
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () async {
-              await _firebaseAuth.signOut();
-              Navigator.of(context).pushNamed('/loginpage');
-              print('user signed out');
+              final action = await Dialogs.yesAbortDialog(context, 'Aussloggen',
+                  'Möchtest du dich wircklich aussloggen?', _firebaseAuth);
+
+              if (action == DialogAction.yes) {
+                setState(() => tappedYes = true);
+              } else {
+                setState(() => tappedYes = false);
+              }
             },
           ),
         ],
@@ -133,13 +139,13 @@ class _HomepageState extends State<Homepage> {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         color: Colors.white,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.indigo,
         buttonBackgroundColor: Colors.white,
         height: 50,
         items: <Widget>[
-          Icon(Icons.share, size: 20, color: Colors.deepPurple),
-          Icon(Icons.help, size: 20, color: Colors.deepPurple),
-          Icon(Icons.person, size: 20, color: Colors.deepPurple)
+          Icon(Icons.share, size: 20, color: Colors.indigo),
+          Icon(Icons.help, size: 20, color: Colors.indigo),
+          Icon(Icons.person, size: 20, color: Colors.indigo)
         ],
         animationDuration: Duration(
           milliseconds: 200,
@@ -152,4 +158,3 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
-

@@ -201,12 +201,13 @@ class _SignuppageState extends State<Signuppage> {
                                 .signUpWithEmailAndPassword(email, password);
                             if (user == null) {
                               setState(() {
-                                error = 'Email nicht valide oder bereits verwendet!';
+                                error =
+                                    'Email nicht valide oder bereits verwendet!';
                               });
                             }
                             print('User created uid: ' + user.uid);
                             Navigator.of(context).pushNamed('/homepage');
-                          }catch (e) {
+                          } catch (e) {
                             print(e.toString());
                           }
                         }

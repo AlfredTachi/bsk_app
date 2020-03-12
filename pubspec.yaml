@@ -80,7 +80,7 @@ flutter:
      - family: Satisfy
        fonts:
          - asset: fonts/Satisfy-Regular.ttf
- 
+     
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

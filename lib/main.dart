@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
       value: AuthService().user,
-        child: MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: true,
         title: 'BskQuiz',
         theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
+          primarySwatch: Colors.indigo,
         ),
         initialRoute: '/',
         onGenerateRoute: RouteGenerator.generateRoute,

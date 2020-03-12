@@ -10,13 +10,12 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-
   final AuthService _firebaseAuth = AuthService();
 
   // text fiel state
   String email = '';
   String password = '';
-  
+
   // TextEditingController _emailController;
   // TextEditingController _passwordController;
 
@@ -187,14 +186,12 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                   MaterialButton(
                     onPressed: () async {
-                      if (email.isEmpty ||
-                          password.isEmpty) {
+                      if (email.isEmpty || password.isEmpty) {
                         print('Email and password cannot be empty');
                         return;
                       }
                       FirebaseUser user = await AuthService()
-                          .signInWithEmailAndPassword(
-                              email, password);
+                          .signInWithEmailAndPassword(email, password);
                       if (user == null) {
                         print('Login failed');
                       } else {
