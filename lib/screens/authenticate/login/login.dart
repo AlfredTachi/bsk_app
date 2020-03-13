@@ -1,4 +1,5 @@
 import 'package:bsk_app/models/user.dart';
+import 'package:bsk_app/screens/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bsk_app/services/auth.dart';
@@ -334,7 +335,15 @@ class _LoginpageState extends State<Loginpage> {
           _buildSocialBtn(
             () {
               signInWithGoogle().whenComplete(() {
-                Navigator.of(context).pushNamed('/profilepage');
+                Navigator.of(context).pushNamed('/homepage');
+                // Navigator.of(context).push(
+                //    MaterialPageRoute(
+                //      builder: (context) {
+                //        return ProfileScreen();
+                //      },
+                //    ),
+                //  );
+                //Navigator.of(context).pushNamed('/homepage');
               });
             },
             AssetImage(

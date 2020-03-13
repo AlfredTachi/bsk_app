@@ -11,7 +11,7 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () {
+    Timer(Duration(seconds: 4), () {
       Navigator.of(context).pushNamed(
         '/loginpage',
       );
@@ -25,24 +25,24 @@ class _SplashscreenState extends State<Splashscreen> {
           child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-          Container(decoration: BoxDecoration(color: Colors.blue[900])),
+          Container(decoration: BoxDecoration(color: Colors.indigo)),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.all(
-                  20.0,
+                padding: EdgeInsets.only(top:
+                  120.0, right: 20.0, left: 20.0
                 ),
               child: Material(
                 color: Colors.grey[400],
-                elevation: 5.0,
+                elevation: 10.0,
                 borderRadius: BorderRadius.circular(20.0),
                 child: Container(
                   height: 400.0,
                   width: 400.0,
                   child: ClipOval(
                     child: Image(
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                       image: AssetImage(
                         'images/splash.png',
                       ),

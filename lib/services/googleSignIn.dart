@@ -4,13 +4,9 @@ import 'dart:async';
 
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-String name;
-String email;
-String imageUrl;
-
-// Future<FirebaseUser> get getUser => _firebaseAuth.currentUser();
-
-// Stream<FirebaseUser> get user => _firebaseAuth.onAuthStateChanged;
+String name = '';
+String email = '';
+String imageUrl = '';
 
 // Sign in with google
 final GoogleSignIn googleSignIn = GoogleSignIn(
@@ -19,35 +15,38 @@ final GoogleSignIn googleSignIn = GoogleSignIn(
     'https://www.googleapis.com/auth/contacts.readonly',
   ],
 );
-Future<String> signInWithGoogle() async {
+Future<FirebaseUser> signInWithGoogle() async {
   final GoogleSignInAccount googleUser = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
-  if (googleUser == null) return null;
   final AuthCredential credential = GoogleAuthProvider.getCredential(
     idToken: googleAuth.idToken,
     accessToken: googleAuth.accessToken,
   );
 
+  if (googleUser == null) {
+    return null;
+  }
+
   final FirebaseUser user =
       (await _firebaseAuth.signInWithCredential(credential)).user;
 
   // checking if users info not null
-  assert(user.displayName != null);
-  assert(user.email != null);
-  assert(user.photoUrl != null);
+  // assert(user.displayName != null);
+  // assert(user.email != null);
+  // assert(user.photoUrl != null);
 
   name = user.displayName;
   email = user.email;
   imageUrl = user.photoUrl;
 
-  assert(!user.isAnonymous);
-  assert(await user.getIdToken() != null);
+  // assert(!user.isAnonymous);
+  // assert(await user.getIdToken() != null);
 
   final FirebaseUser currentUser = await _firebaseAuth.currentUser();
   assert(user.uid == currentUser.uid);
 
-  return 'sign in with google succeeded: $user';
+  return user;
 }
 
 void updateUserData(FirebaseUser user) async {}

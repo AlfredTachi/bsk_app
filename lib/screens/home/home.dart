@@ -152,6 +152,9 @@ class _HomepageState extends State<Homepage> {
         ),
         index: 1,
         onTap: (index) {
+          if (index == 2) {
+            Navigator.of(context).pushNamed('/profilepage');
+          }
           debugPrint('Currrent Index is $index');
         },
       ),
