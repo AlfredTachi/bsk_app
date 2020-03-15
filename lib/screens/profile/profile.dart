@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:bsk_app/services/googleSignIn.dart';
+import 'package:bsk_app/services/auth.dart';
 
 class ProfileScreen extends StatelessWidget {
-  
 
-  // String name, email, imageUrl;
-
-  //  ProfileScreen (String name, String email, String imageUrl) {
-  //    this.name = name;
-  //    this.email = email;
-  //    this.imageUrl = imageUrl;
-  //  }
+  final AuthService _firebaseAuth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +32,8 @@ class ProfileScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
                CircleAvatar(
-                 backgroundImage: NetworkImage(
-                   imageUrl,
+                 backgroundImage: AssetImage(
+                   'images/splash.png',
                  ),
                  radius: 150,
                  backgroundColor: Colors.grey[200],
@@ -54,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.black54),
               ),
               Text(
-                name,
+                '*****',
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.deepPurple,
@@ -69,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.black54),
               ),
               Text(
-                email,
+                '****',
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.deepPurple,
@@ -78,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: 40),
               RaisedButton(
                 onPressed: () {
-                  signOutGoogle();
+                  _firebaseAuth.signOut();
                   Navigator.of(context).pushNamed('/loginpage');
                 },
                 color: Colors.indigo,

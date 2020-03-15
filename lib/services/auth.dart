@@ -1,15 +1,56 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bsk_app/models/user.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
+final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+String name = '';
+String email = '';
+String imageUrl = '';
+
+// Sign in with google
+final GoogleSignIn googleSignIn = GoogleSignIn();
+
+Future<FirebaseUser> signInWithGoogle() async {
+  final GoogleSignInAccount googleUser = await googleSignIn.signIn();
+  final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+  final AuthCredential credential = GoogleAuthProvider.getCredential(
+    idToken: googleAuth.idToken,
+    accessToken: googleAuth.accessToken,
+  );
+
+  if (googleUser == null) {
+    return null;
+  }
+
+  final FirebaseUser user =
+      (await _firebaseAuth.signInWithCredential(credential)).user;
+
+  // checking if users info not null
+  // assert(user.displayName != null);
+  // assert(user.email != null);
+  // assert(user.photoUrl != null);
+
+  name = user.displayName;
+  email = user.email;
+  imageUrl = user.photoUrl;
+
+  // assert(!user.isAnonymous);
+  // assert(await user.getIdToken() != null);
+
+  final FirebaseUser currentUser = await _firebaseAuth.currentUser();
+  assert(user.uid == currentUser.uid);
+
+  return user;
+}
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   // create user Object based on FirebaseUser
   User _userFromFirebaseUer(FirebaseUser user) {

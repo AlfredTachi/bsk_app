@@ -145,7 +145,7 @@ class _HomepageState extends State<Homepage> {
         items: <Widget>[
           Icon(Icons.share, size: 20, color: Colors.indigo),
           Icon(Icons.help, size: 20, color: Colors.indigo),
-          Icon(Icons.person, size: 20, color: Colors.indigo)
+          Icon(Icons.account_circle, size: 20, color: Colors.indigo)
         ],
         animationDuration: Duration(
           milliseconds: 200,

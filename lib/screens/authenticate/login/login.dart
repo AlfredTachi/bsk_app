@@ -1,10 +1,7 @@
 import 'package:bsk_app/models/user.dart';
-import 'package:bsk_app/screens/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bsk_app/services/auth.dart';
-import 'package:bsk_app/services/googleSignIn.dart';
-
 class Loginpage extends StatefulWidget {
   @override
   _LoginpageState createState() => _LoginpageState();
@@ -333,8 +330,8 @@ class _LoginpageState extends State<Loginpage> {
             ),
           ),
           _buildSocialBtn(
-            () {
-              signInWithGoogle().whenComplete(() {
+            () async{
+              _firebaseAuth.signInWithGoogle().whenComplete(() {
                 Navigator.of(context).pushNamed('/homepage');
                 // Navigator.of(context).push(
                 //    MaterialPageRoute(

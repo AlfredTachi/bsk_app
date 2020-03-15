@@ -14,7 +14,7 @@ class _SignuppageState extends State<Signuppage> {
   final _formKey = GlobalKey<FormState>();
 
   // text fiel state
-  String username = '';
+  String name = '';
   String email = '';
   String password = '';
   String error = '';
@@ -121,7 +121,7 @@ class _SignuppageState extends State<Signuppage> {
                                   value.isEmpty ? 'Enter an username' : null,
                               onChanged: (value) {
                                 setState(() {
-                                  username = value;
+                                  name = value;
                                 });
                               },
                               keyboardType: TextInputType.emailAddress,
