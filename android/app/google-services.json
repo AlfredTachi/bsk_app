@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "857356395666",
+    "firebase_url": "https://bskfirebase.firebaseio.com",
+    "project_id": "bskfirebase",
+    "storage_bucket": "bskfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857356395666:android:9b75ed85263ed29b25324b",
+        "android_client_info": {
+          "package_name": "com.example.bsk_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857356395666-9l4nv8fkhiabgoe5pua3jqofab9diel8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvSEAUX9ZAo5HhMXf-LYRLQ-TPBEnNexk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857356395666-9l4nv8fkhiabgoe5pua3jqofab9diel8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
