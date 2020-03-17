@@ -1,11 +1,9 @@
 import 'package:bsk_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
-enum DialogAction { yes, no }
-
 class Dialogs {
-  static Future<DialogAction> yesAbortDialog(BuildContext context, String title,
-      String body, AuthService _firebaseAuth) async {
+  static Future<bool> yesNoDialog(BuildContext context, String title,
+      String body, AuthService _firebaseAuth, String route) async {
     final action = await showDialog(
       context: context,
       barrierDismissible: false,
@@ -19,16 +17,15 @@ class Dialogs {
           actions: <Widget>[
             FlatButton(
               color: Colors.indigo,
-              onPressed: () => Navigator.of(context).pop(DialogAction.no),
+              onPressed: () => Navigator.of(context).pop(false),
               child: const Text('Nein'),
             ),
             RaisedButton(
               color: Colors.white,
               onPressed: () async {
-                Navigator.of(context).pop(DialogAction.yes);
                 await _firebaseAuth.signOut();
-                Navigator.of(context).pushReplacementNamed('/loginpage');
-                print('user signed out');
+                Navigator.of(context).pop(true);
+                Navigator.of(context).pushReplacementNamed(route);
               },
               child: const Text(
                 'Ja',
@@ -42,6 +39,6 @@ class Dialogs {
       },
     );
 
-    return (action != null) ? action : DialogAction.no;
+    return (action != null) ? action : false;
   }
 }

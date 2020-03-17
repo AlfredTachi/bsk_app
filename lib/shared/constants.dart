@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 const usernameInputDecoration = InputDecoration(
     border: InputBorder.none,
@@ -26,3 +27,21 @@ const passwordInputDecoration = InputDecoration(
       fontFamily: 'Quando',
     ),
     prefixIcon: Icon(Icons.lock, color: Colors.deepPurpleAccent));
+
+// Override Back Button
+DateTime backButtonPressedTime;
+Future<bool> onWillPop() async {
+  DateTime currentTime = DateTime.now();
+  bool backButton = backButtonPressedTime == null ||
+      currentTime.difference(backButtonPressedTime) > Duration(seconds: 3);
+
+  if (backButton) {
+    backButtonPressedTime = currentTime;
+    Fluttertoast.showToast(
+        msg: 'Zweimal klicken um die App zu verlassen!',
+        backgroundColor: Colors.black,
+        textColor: Colors.white);
+    return false;
+  }
+  return true;
+}

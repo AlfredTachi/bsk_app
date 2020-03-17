@@ -22,17 +22,15 @@ class _SplashscreenState extends State<Splashscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-          child: Stack(
-          fit: StackFit.expand,
+            child: Stack(
+      fit: StackFit.expand,
+      children: <Widget>[
+        Container(decoration: BoxDecoration(color: Colors.indigo)),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-          Container(decoration: BoxDecoration(color: Colors.indigo)),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top:
-                  120.0, right: 20.0, left: 20.0
-                ),
+            Padding(
+              padding: EdgeInsets.only(top: 120.0, right: 20.0, left: 20.0),
               child: Material(
                 color: Colors.grey[400],
                 elevation: 10.0,
@@ -77,5 +75,4 @@ class _SplashscreenState extends State<Splashscreen> {
       ],
     )));
   }
-
 }

@@ -1,7 +1,8 @@
 import 'package:bsk_app/services/auth.dart';
+import 'package:bsk_app/shared/constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:bsk_app/screens/home/logoutdialogs.dart';
+import 'package:bsk_app/shared/dialogs.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -10,7 +11,6 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final AuthService _firebaseAuth = AuthService();
-  bool tappedYes = false;
 
   List<String> images = [
     'images/01_BS_GL.png',
@@ -91,78 +91,75 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.indigo,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back), 
-          onPressed: () {
-            Navigator.pop(context, true);
-          }
-        ),
-        title: Text(
-          'BskQuiz',
-          style: TextStyle(
-            fontFamily: 'Qando',
-          ),
-        ),
-        elevation: 20.0,
-        centerTitle: true,
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(
-              Icons.exit_to_app,
-              color: Colors.white,
-            ),
-            label: Text(
-              '',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () async {
-              final action = await Dialogs.yesAbortDialog(context, 'Aussloggen',
-                  'Möchtest du dich wircklich aussloggen?', _firebaseAuth);
-
-              if (action == DialogAction.yes) {
-                setState(() => tappedYes = true);
-              } else {
-                setState(() => tappedYes = false);
-              }
-            },
-          ),
-        ],
-      ),
-      body: ListView(
-        children: <Widget>[
-          customcard('Einführung & Grundlagen', images[0]),
-          customcard('Prozesse und Threads', images[1]),
-          customcard('IPC und Race Conditions', images[2]),
-          customcard('Scheduling', images[3]),
-          customcard('Speicherverwaltung', images[4]),
-          customcard('Dateisysteme', images[5]),
-          customcard('IT-Sicherheit', images[6]),
-          customcard('Alte Klausurfragen', images[7]),
-        ],
-      ),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Colors.white,
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: Scaffold(
         backgroundColor: Colors.indigo,
-        buttonBackgroundColor: Colors.white,
-        height: 50,
-        items: <Widget>[
-          Icon(Icons.share, size: 20, color: Colors.indigo),
-          Icon(Icons.help, size: 20, color: Colors.indigo),
-          Icon(Icons.account_circle, size: 20, color: Colors.indigo)
-        ],
-        animationDuration: Duration(
-          milliseconds: 200,
+        appBar: AppBar(
+          leading: IconButton(
+              color: Colors.white,
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/homepage');
+              }),
+          title: Text(
+            'BskQuiz',
+            style: TextStyle(
+              fontFamily: 'Qando',
+            ),
+          ),
+          elevation: 20.0,
+          centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.exit_to_app,
+                color: Colors.white,
+              ),
+              onPressed: () async {
+                await Dialogs.yesNoDialog(
+                    context,
+                    'Aussloggen',
+                    'Möchtest du dich wircklich aussloggen?',
+                    _firebaseAuth,
+                    '/loginpage');
+              },
+            ),
+          ],
         ),
-        index: 1,
-        onTap: (index) {
-          if (index == 2) {
-            Navigator.of(context).pushNamed('/profilepage');
-          }
-          debugPrint('Currrent Index is $index');
-        },
+        body: ListView(
+          children: <Widget>[
+            customcard('Einführung & Grundlagen', images[0]),
+            customcard('Prozesse und Threads', images[1]),
+            customcard('IPC und Race Conditions', images[2]),
+            customcard('Scheduling', images[3]),
+            customcard('Speicherverwaltung', images[4]),
+            customcard('Dateisysteme', images[5]),
+            customcard('IT-Sicherheit', images[6]),
+            customcard('Alte Klausurfragen', images[7]),
+          ],
+        ),
+        bottomNavigationBar: CurvedNavigationBar(
+          color: Colors.white,
+          backgroundColor: Colors.indigo,
+          buttonBackgroundColor: Colors.white,
+          height: 50,
+          items: <Widget>[
+            Icon(Icons.share, size: 20, color: Colors.indigo),
+            Icon(Icons.help, size: 20, color: Colors.indigo),
+            Icon(Icons.account_circle, size: 20, color: Colors.indigo)
+          ],
+          animationDuration: Duration(
+            milliseconds: 200,
+          ),
+          index: 1,
+          onTap: (index) {
+            if (index == 2) {
+              Navigator.of(context).pushNamed('/profilepage');
+            }
+            debugPrint('Currrent Index is $index');
+          },
+        ),
       ),
     );
   }
