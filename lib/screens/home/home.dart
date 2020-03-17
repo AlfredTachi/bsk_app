@@ -64,7 +64,7 @@ class _HomepageState extends State<Homepage> {
                     child: Text(
                       kapitelname,
                       style: TextStyle(
-                        fontSize: 24.0,
+                        fontSize: 22.0,
                         color: Colors.white,
                         fontFamily: 'Quando',
                         fontWeight: FontWeight.w600,
@@ -76,7 +76,7 @@ class _HomepageState extends State<Homepage> {
                     child: Text(
                       'Dies ist eine Beschreibung \nkdhahskldaksdhlkashdkjsadhjk\nhakdhakhdkjdhkjad \njhdjagdgajhdjhg',
                       style: TextStyle(
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                         color: Colors.white,
                         fontFamily: 'Alike',
                       ),
@@ -94,6 +94,12 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       backgroundColor: Colors.indigo,
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), 
+          onPressed: () {
+            Navigator.pop(context, true);
+          }
+        ),
         title: Text(
           'BskQuiz',
           style: TextStyle(

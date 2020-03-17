@@ -22,13 +22,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
-  back_button_interceptor:
-    dependency: "direct main"
-    description:
-      name: back_button_interceptor
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.2.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -106,13 +99,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.2.1"
-  firebase_analytics:
-    dependency: "direct main"
-    description:
-      name: firebase_analytics
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.11"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -135,7 +121,7 @@ packages:
     source: hosted
     version: "0.1.2"
   firebase_core:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
@@ -160,6 +146,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_spinkit:
+    dependency: "direct main"
+    description:
+      name: flutter_spinkit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter

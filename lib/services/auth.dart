@@ -73,7 +73,7 @@ Future<FirebaseUser> signInWithGoogle() async {
   }
 
   // sign in anon
-  Future/*<FirebaseUser>*/ anonLogin() async {
+  Future<User> anonLogin() async {
     try {
       FirebaseUser user = (await _firebaseAuth.signInAnonymously()).user;
       return _userFromFirebaseUer(user);
@@ -98,14 +98,14 @@ Future<FirebaseUser> signInWithGoogle() async {
   }
 
   // Email and Password Sign In
-  Future<FirebaseUser> signInWithEmailAndPassword(
+  Future<User> signInWithEmailAndPassword(
       String email, String password) async {
     try {
       FirebaseUser user = (await _firebaseAuth.signInWithEmailAndPassword(
               email: email, password: password))
           .user;
 
-      return user;
+      return _userFromFirebaseUer(user);
     } catch (err) {
       print(err.toString());
       return null;

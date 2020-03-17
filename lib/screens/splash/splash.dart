@@ -12,7 +12,7 @@ class _SplashscreenState extends State<Splashscreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 4), () {
-      Navigator.of(context).pushNamed(
+      Navigator.of(context).pushReplacementNamed(
         '/loginpage',
       );
     });

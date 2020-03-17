@@ -1,6 +1,8 @@
-import 'package:bsk_app/models/user.dart';
+import 'package:bsk_app/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:bsk_app/services/auth.dart';
+import 'package:bsk_app/shared/constants.dart';
+import 'package:bsk_app/shared/widget_design_header_Form.dart';
 
 class Signuppage extends StatefulWidget {
   @override
@@ -8,10 +10,10 @@ class Signuppage extends StatefulWidget {
 }
 
 class _SignuppageState extends State<Signuppage> {
-  // String _username, _email, _password;
 
   final AuthService _firebaseAuth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   // text fiel state
   String name = '';
@@ -21,73 +23,13 @@ class _SignuppageState extends State<Signuppage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       backgroundColor: Colors.indigo,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Container(
-              height: 300,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('images/background.png'),
-                    fit: BoxFit.fill),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    left: 30,
-                    width: 80,
-                    height: 150,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('images/light-1.png')),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 140,
-                    width: 80,
-                    height: 100,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('images/light-2.png')),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    right: 40,
-                    top: 40,
-                    width: 80,
-                    height: 150,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('images/clock.png')),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 50.0),
-                      child: Center(
-                        child: Text(
-                          'Registrieren',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontFamily: 'Quando',
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            designHeaderForm('Registrieren'),
             Padding(
               padding: EdgeInsets.all(30.0),
               child: Form(
@@ -118,22 +60,14 @@ class _SignuppageState extends State<Signuppage> {
                                         BorderSide(color: Colors.grey[100]))),
                             child: TextFormField(
                               validator: (value) =>
-                                  value.isEmpty ? 'Enter an username' : null,
+                                  value.isEmpty ? 'Bitte Benutzername eingeben' : null,
                               onChanged: (value) {
                                 setState(() {
                                   name = value;
                                 });
                               },
                               keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.only(top: 14.0),
-                                  hintText: 'Benutzername',
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey[400],
-                                      fontFamily: 'Quando'),
-                                  prefixIcon: Icon(Icons.person,
-                                      color: Colors.deepPurpleAccent)),
+                              decoration: usernameInputDecoration
                             ),
                           ),
                           Container(
@@ -144,30 +78,21 @@ class _SignuppageState extends State<Signuppage> {
                                         BorderSide(color: Colors.grey[100]))),
                             child: TextFormField(
                               validator: (value) =>
-                                  value.isEmpty ? 'Enter an email' : null,
+                                  value.isEmpty ? 'Bitte eine valide Email eingeben!' : null,
                               onChanged: (value) {
                                 setState(() {
                                   email = value;
                                 });
                               },
                               keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.only(top: 14.0),
-                                  hintText: 'Email-Adresse',
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey[400],
-                                    fontFamily: 'Quando',
-                                  ),
-                                  prefixIcon: Icon(Icons.email,
-                                      color: Colors.deepPurpleAccent)),
+                              decoration: emailInputDecoration,
                             ),
                           ),
                           Container(
                             padding: EdgeInsets.all(8.0),
                             child: TextFormField(
                               validator: (value) => value.length < 8
-                                  ? 'Enter a password 8+ chars long'
+                                  ? 'Passwort muss 8+ Zeichen lang sein!'
                                   : null,
                               onChanged: (value) {
                                 setState(() {
@@ -175,16 +100,7 @@ class _SignuppageState extends State<Signuppage> {
                                 });
                               },
                               obscureText: true,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.only(top: 14.0),
-                                  hintText: 'Passwort',
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey[400],
-                                    fontFamily: 'Quando',
-                                  ),
-                                  prefixIcon: Icon(Icons.lock,
-                                      color: Colors.deepPurpleAccent)),
+                              decoration: passwordInputDecoration,
                             ),
                           ),
                         ],
@@ -196,16 +112,20 @@ class _SignuppageState extends State<Signuppage> {
                     MaterialButton(
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
+                          setState(() {
+                            loading = true;
+                          });
                           try {
-                            User user = await _firebaseAuth
+                            dynamic result = await _firebaseAuth
                                 .signUpWithEmailAndPassword(email, password);
-                            if (user == null) {
+                            if (result == null) {
                               setState(() {
                                 error =
                                     'Email nicht valide oder bereits verwendet!';
+                                loading = false;
                               });
                             }
-                            print('User created uid: ' + user.uid);
+                            print('User created uid: ' + result.uid);
                             Navigator.of(context).pushNamed('/homepage');
                           } catch (e) {
                             print(e.toString());

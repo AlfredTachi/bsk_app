@@ -27,7 +27,7 @@ class Dialogs {
               onPressed: () async {
                 Navigator.of(context).pop(DialogAction.yes);
                 await _firebaseAuth.signOut();
-                Navigator.of(context).pushNamed('/loginpage');
+                Navigator.of(context).pushReplacementNamed('/loginpage');
                 print('user signed out');
               },
               child: const Text(
