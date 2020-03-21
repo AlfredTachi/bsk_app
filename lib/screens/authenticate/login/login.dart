@@ -22,208 +22,214 @@ class _LoginpageState extends State<Loginpage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: onWillPop,
-          child: loading
-          ? Loading()
-          : Scaffold(
-              backgroundColor: Colors.indigo,
-              body: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    designHeaderForm('Einloggen'),
-                    Padding(
-                      padding: EdgeInsets.all(30.0),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.all(5.0),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color.fromRGBO(143, 148, 251, 2),
-                                      blurRadius: 20.0,
-                                      offset: Offset(0, 10),
-                                    )
-                                  ]),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                color: Colors.grey[100]))),
-                                    child: TextFormField(
-                                      validator: (value) => value.isEmpty
-                                          ? 'Bitte Email eingeben'
-                                          : null,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          email = value;
-                                        });
-                                      },
-                                      keyboardType: TextInputType.emailAddress,
-                                      decoration: emailInputDecoration,
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: TextFormField(
-                                      validator: (value) => value.length < 8
-                                          ? 'Passwort muss 8+ Zeichen lang sein!'
-                                          : null,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          password = value;
-                                        });
-                                      },
-                                      obscureText: true,
-                                      decoration: passwordInputDecoration,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.centerRight,
-                              child: FlatButton(
-                                onPressed: () =>
-                                    print('Passwort-vergessen-Button angeklickt'),
-                                padding: EdgeInsets.only(right: 0.0),
-                                child: Text(
-                                  'Passwort vergessen?',
-                                  style: TextStyle(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: WillPopScope(
+        onWillPop: onWillPop,
+        child: loading
+            ? Loading()
+            : Scaffold(
+                backgroundColor: Colors.indigo,
+                body: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      designHeaderForm('Einloggen'),
+                      Padding(
+                        padding: EdgeInsets.all(30.0),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
                                     color: Colors.white,
-                                    fontFamily: 'Quando',
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color.fromRGBO(143, 148, 251, 2),
+                                        blurRadius: 20.0,
+                                        offset: Offset(0, 10),
+                                      )
+                                    ]),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.all(8.0),
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color: Colors.grey[100]))),
+                                      child: TextFormField(
+                                        validator: (value) => value.isEmpty
+                                            ? 'Bitte Email eingeben'
+                                            : null,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            email = value;
+                                          });
+                                        },
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: emailInputDecoration,
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: TextFormField(
+                                        validator: (value) => value.length < 8
+                                            ? 'Passwort muss 8+ Zeichen lang sein!'
+                                            : null,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            password = value;
+                                          });
+                                        },
+                                        obscureText: true,
+                                        decoration: passwordInputDecoration,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                child: FlatButton(
+                                  onPressed: () => print(
+                                      'Passwort-vergessen-Button angeklickt'),
+                                  padding: EdgeInsets.only(right: 0.0),
+                                  child: Text(
+                                    'Passwort vergessen?',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Quando',
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(error,
-                                style:
-                                    TextStyle(color: Colors.red, fontSize: 14.0)),
-                            SizedBox(
-                              height: 15.0,
-                            ),
-                            MaterialButton(
-                              onPressed: () async {
-                                if (_formKey.currentState.validate()) {
-                                  setState(() {
-                                    loading = true;
-                                  });
-                                  try {
-                                    dynamic result = await _firebaseAuth
-                                        .signInWithEmailAndPassword(
-                                            email, password);
-                                    if (result == null) {
-                                      setState(() {
-                                        error =
-                                            'Diese Anmeldeinformationen stimmt mit keinem der vorhandenen Accounts überein! Registrieren Sie sich';
-                                        loading = false;
-                                      });
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(error,
+                                  style: TextStyle(
+                                      color: Colors.red, fontSize: 14.0)),
+                              SizedBox(
+                                height: 15.0,
+                              ),
+                              MaterialButton(
+                                onPressed: () async {
+                                  if (_formKey.currentState.validate()) {
+                                    setState(() {
+                                      loading = true;
+                                    });
+                                    try {
+                                      dynamic result = await _firebaseAuth
+                                          .signInWithEmailAndPassword(
+                                              email, password);
+                                      if (result == null) {
+                                        setState(() {
+                                          error =
+                                              'Diese Anmeldeinformationen stimmt mit keinem der vorhandenen Accounts überein! Registrieren Sie sich';
+                                          loading = false;
+                                        });
+                                      }
+                                      print('User with uid: ' +
+                                          result.uid +
+                                          ' signed in!');
+                                      Navigator.of(context)
+                                          .pushReplacementNamed('/homepage');
+                                    } catch (e) {
+                                      print(e.toString());
                                     }
-                                    print('User with uid: ' +
-                                        result.uid +
-                                        ' signed in!');
+                                  }
+                                },
+                                elevation: 10.0,
+                                color: Color.fromRGBO(143, 148, 251, 1),
+                                splashColor: Colors.deepPurple,
+                                highlightColor: Colors.deepPurple,
+                                padding: EdgeInsets.all(0.0),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: Container(
+                                  height: 50,
+                                  child: Center(
+                                    child: Text(
+                                      'Einloggen',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Quando',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              MaterialButton(
+                                onPressed: () async {
+                                  User userFromFirebaseUser =
+                                      await _firebaseAuth.anonLogin();
+                                  if (userFromFirebaseUser == null) {
+                                    setState(() {
+                                      loading = false;
+                                    });
+                                    print('error signing in');
+                                  } else {
+                                    setState(() {
+                                      loading = true;
+                                    });
+                                    print('anonym signed in');
+                                    print(userFromFirebaseUser.uid);
                                     Navigator.of(context)
                                         .pushReplacementNamed('/homepage');
-                                  } catch (e) {
-                                    print(e.toString());
                                   }
-                                }
-                              },
-                              elevation: 10.0,
-                              color: Color.fromRGBO(143, 148, 251, 1),
-                              splashColor: Colors.deepPurple,
-                              highlightColor: Colors.deepPurple,
-                              padding: EdgeInsets.all(0.0),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              child: Container(
-                                height: 50,
-                                child: Center(
-                                  child: Text(
-                                    'Einloggen',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Quando',
+                                },
+                                elevation: 10.0,
+                                color: Color.fromRGBO(143, 148, 251, 1),
+                                splashColor: Colors.deepPurple,
+                                highlightColor: Colors.deepPurple,
+                                padding: EdgeInsets.all(0.0),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: Container(
+                                  height: 50,
+                                  child: Center(
+                                    child: Text(
+                                      'Weiter als Gast',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Quando',
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            MaterialButton(
-                              onPressed: () async {
-                                User userFromFirebaseUser =
-                                    await _firebaseAuth.anonLogin();
-                                if (userFromFirebaseUser == null) {
-                                  setState(() {
-                                    loading = false;
-                                  });
-                                  print('error signing in');
-                                } else {
-                                  setState(() {
-                                    loading = true;
-                                  });
-                                  print('anonym signed in');
-                                  print(userFromFirebaseUser.uid);
-                                  Navigator.of(context)
-                                      .pushReplacementNamed('/homepage');
-                                }
-                              },
-                              elevation: 10.0,
-                              color: Color.fromRGBO(143, 148, 251, 1),
-                              splashColor: Colors.deepPurple,
-                              highlightColor: Colors.deepPurple,
-                              padding: EdgeInsets.all(0.0),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              child: Container(
-                                height: 50,
-                                child: Center(
-                                  child: Text(
-                                    'Weiter als Gast',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Quando',
-                                    ),
-                                  ),
-                                ),
+                              SizedBox(
+                                height: 20,
                               ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            _buildSignInWithText(),
-                            _buildSocialBtnRow(),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            _buildSignupBtn(),
-                          ],
+                              _buildSignInWithText(),
+                              _buildSocialBtnRow(),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              _buildSignupBtn(),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
+      ),
     );
   }
 

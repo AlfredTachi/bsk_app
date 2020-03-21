@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-// import 'dart:math';
+import 'dart:math';
 import 'package:bsk_app/screens/quizpage/resultpage.dart';
 import 'package:flutter/material.dart';
 import 'package:bsk_app/shared/loading.dart';
 import 'package:flutter/services.dart';
-// import 'package:bsk_app/shared/constants.dart';
 
 class Getjson extends StatelessWidget {
-
   // "kapitelName" as a parameter
   String kapitelName;
   Getjson(this.kapitelName);
@@ -37,12 +35,12 @@ class Getjson extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // to avialable the string assetToLoad
     setAsset();
     // to load and decode JSON
     return FutureBuilder(
-      future: DefaultAssetBundle.of(context).loadString(assetToLoad, cache: true),
+      future:
+          DefaultAssetBundle.of(context).loadString(assetToLoad, cache: true),
       builder: (context, snapshot) {
         List myData = json.decode(snapshot.data.toString());
         if (myData == null) {
@@ -73,21 +71,13 @@ class _QuizpageState extends State<Quizpage> {
   Color wrong = Colors.red;
   int points = 0;
   int i = 1;
-
-  // int numberOfQuestion = 10;
-  // var rand = new Random();
   // variable to iterate
-  int j = 1;
+  int j = 0;
   int timer = 60;
   String showTimer = '60';
 
   bool cancelTimer = false;
 
-  
-  var randomArray = [2, 3, 1, 4, 7, 10, 5, 8, 6, 9];
-  // var randomArray = choosingQuesRand();
-  
-  
   Map<String, Color> buttonColor = {
     "a": Colors.indigoAccent,
     "b": Colors.indigoAccent,
@@ -96,19 +86,11 @@ class _QuizpageState extends State<Quizpage> {
   };
 
   // function for choosing question randomly
-  // void choosingQuesRand() {
-  //   var distinctIds = [];
-  //   for(int i = 0; i < numberOfQuestion; i++){
-  //     distinctIds.add(rand.nextInt(numberOfQuestion));
-  //     randomArray = distinctIds.toSet().toList();
-  //     if (randomArray.length < numberOfQuestion) {
-  //       continue;
-  //     } else {
-  //       break;
-  //     }
-  //   }
-
-  // }
+  int numberOfQuestion = 10;
+  var rand = new Random();
+  int choosingQuesRandomly() {
+    return rand.nextInt(numberOfQuestion + 1) +1;
+  }
 
   // to start timer as this screen is created
   @override
@@ -142,12 +124,12 @@ class _QuizpageState extends State<Quizpage> {
     });
   }
 
-  void nextQuestion() {
+  void nextQuestion() async {
     cancelTimer = false;
     timer = 60;
     setState(() {
-      if (j < 10) {
-        i = randomArray[j];
+      if (j < numberOfQuestion - 1) {
+        i = choosingQuesRandomly();
         j++;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -162,7 +144,7 @@ class _QuizpageState extends State<Quizpage> {
     starTimer();
   }
 
-  void checkAnswer(String k) {
+  void checkAnswer(String k) async {
     if (myData[2][i.toString()] == myData[1][i.toString()][k]) {
       points += 5;
       colorToShow = right;
@@ -185,7 +167,7 @@ class _QuizpageState extends State<Quizpage> {
       ),
       child: MaterialButton(
         elevation: 20.0,
-        onPressed: () => checkAnswer(k),
+        onPressed: () async => checkAnswer(k),
         child: Text(
           myData[1][i.toString()][k],
           style: TextStyle(

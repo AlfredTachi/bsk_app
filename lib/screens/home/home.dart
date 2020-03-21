@@ -42,7 +42,7 @@ class _HomepageState extends State<Homepage> {
         20.0,
       ),
       child: InkWell(
-          onTap: () {
+          onTap: () async {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => Getjson(kapitelName), 
             ));
