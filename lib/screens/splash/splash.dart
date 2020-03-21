@@ -13,7 +13,7 @@ class _SplashscreenState extends State<Splashscreen> {
     super.initState();
     Timer(Duration(seconds: 4), () {
       Navigator.of(context).pushReplacementNamed(
-        '/loginpage',
+        '/homepage',
       );
     });
   }
@@ -38,9 +38,9 @@ class _SplashscreenState extends State<Splashscreen> {
                 child: Container(
                   height: 400.0,
                   width: 400.0,
-                  child: ClipOval(
+                  child: ClipRect(
                     child: Image(
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                       image: AssetImage(
                         'images/splash.png',
                       ),

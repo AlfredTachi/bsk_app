@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -45,3 +47,22 @@ Future<bool> onWillPop() async {
   }
   return true;
 }
+
+int numberOfQuestion = 10;
+var randomArray;
+var rand = new Random();
+
+// function for choosing question randomly
+  // Future<dynamic> choosingQuesRand() {
+  //   var distinctIds = [];
+  //   for(int i = 0; i < numberOfQuestion; i++){
+  //     distinctIds.add(rand.nextInt(numberOfQuestion));
+  //     randomArray = distinctIds.toSet().toList();
+  //     if (randomArray.length < numberOfQuestion) {
+  //       continue;
+  //     } else {
+  //       break;
+  //     }
+  //   }
+  // return randomArray;
+  // }

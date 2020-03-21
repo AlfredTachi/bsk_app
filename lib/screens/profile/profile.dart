@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [Colors.blue[100], Colors.blue[400]],
+            colors: [Colors.indigo[200], Colors.indigo[500]],
           ),
         ),
         child: Center(
@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
                  backgroundImage: AssetImage(
                    'images/splash.png',
                  ),
-                 radius: 150,
+                 radius: 90,
                  backgroundColor: Colors.grey[200],
                ),
               SizedBox(height: 40),
@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.black54),
               ),
               Text(
-                '*****',
+                'Taroal',
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.deepPurple,
@@ -62,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.black54),
               ),
               Text(
-                '****',
+                'taroal@web.de',
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.deepPurple,

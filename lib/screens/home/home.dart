@@ -1,8 +1,10 @@
+import 'package:bsk_app/screens/quizpage/quizpage.dart';
 import 'package:bsk_app/services/auth.dart';
 import 'package:bsk_app/shared/constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:bsk_app/shared/dialogs.dart';
+import 'package:flutter/services.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -23,17 +25,30 @@ class _HomepageState extends State<Homepage> {
     'images/examQuestion.png',
   ];
 
-  Widget customcard(String kapitelname, String image) {
+   List<String> descriptions = [
+    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+  ];
+
+  Widget customcard(String kapitelName, String image, String description) {
     return Padding(
       padding: EdgeInsets.all(
         20.0,
       ),
       child: InkWell(
           onTap: () {
-            debugPrint('Card Tapped');
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => Getjson(kapitelName), 
+            ));
           },
           child: Material(
-              color: Color.fromRGBO(143, 140, 251, 1),
+              color:  Colors.indigoAccent,
               elevation: 10.0,
               borderRadius: BorderRadius.circular(20.0),
               child: Container(
@@ -62,7 +77,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                   Center(
                     child: Text(
-                      kapitelname,
+                      kapitelName,
                       style: TextStyle(
                         fontSize: 22.0,
                         color: Colors.white,
@@ -74,7 +89,7 @@ class _HomepageState extends State<Homepage> {
                   Container(
                     padding: EdgeInsets.all(20.0),
                     child: Text(
-                      'Dies ist eine Beschreibung \nkdhahskldaksdhlkashdkjsadhjk\nhakdhakhdkjdhkjad \njhdjagdgajhdjhg',
+                      description,
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.white,
@@ -90,7 +105,10 @@ class _HomepageState extends State<Homepage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {   
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown, DeviceOrientation.portraitUp
+    ]);
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
@@ -129,14 +147,14 @@ class _HomepageState extends State<Homepage> {
         ),
         body: ListView(
           children: <Widget>[
-            customcard('Einführung & Grundlagen', images[0]),
-            customcard('Prozesse und Threads', images[1]),
-            customcard('IPC und Race Conditions', images[2]),
-            customcard('Scheduling', images[3]),
-            customcard('Speicherverwaltung', images[4]),
-            customcard('Dateisysteme', images[5]),
-            customcard('IT-Sicherheit', images[6]),
-            customcard('Alte Klausurfragen', images[7]),
+            customcard('Einführung & Grundlagen', images[0], descriptions[0]),
+            customcard('Prozesse und Threads', images[1], descriptions[1]),
+            customcard('IPC und Race Conditions', images[2], descriptions[2]),
+            customcard('Scheduling', images[3], descriptions[3]),
+            customcard('Speicherverwaltung', images[4], descriptions[4]),
+            customcard('Dateisysteme', images[5], descriptions[5]),
+            customcard('IT-Sicherheit', images[6], descriptions[6]),
+            customcard('Alte Klausurfragen', images[7], descriptions[7]),
           ],
         ),
         bottomNavigationBar: CurvedNavigationBar(
@@ -145,8 +163,8 @@ class _HomepageState extends State<Homepage> {
           buttonBackgroundColor: Colors.white,
           height: 50,
           items: <Widget>[
-            Icon(Icons.share, size: 20, color: Colors.indigo),
-            Icon(Icons.help, size: 20, color: Colors.indigo),
+            Icon(Icons.book, size: 20, color: Colors.indigo),
+            Icon(Icons.info_outline, size: 20, color: Colors.indigo),
             Icon(Icons.account_circle, size: 20, color: Colors.indigo)
           ],
           animationDuration: Duration(
