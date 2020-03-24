@@ -23,9 +23,14 @@ class Dialogs {
             RaisedButton(
               color: Colors.white,
               onPressed: () async {
-                await _firebaseAuth.signOut();
-                Navigator.of(context).pop(true);
-                Navigator.of(context).pushReplacementNamed(route);
+                if (_firebaseAuth == null) {
+                  Navigator.of(context).pop(true);
+                  Navigator.of(context).pushReplacementNamed(route);
+                } else {
+                  await _firebaseAuth.signOut();
+                  Navigator.of(context).pop(true);
+                  Navigator.of(context).pushReplacementNamed(route);
+                }
               },
               child: const Text(
                 'Ja',

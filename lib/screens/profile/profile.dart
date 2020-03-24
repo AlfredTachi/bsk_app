@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:bsk_app/services/auth.dart';
 
 class ProfileScreen extends StatelessWidget {
-
   final AuthService _firebaseAuth = AuthService();
 
   @override
@@ -11,9 +10,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Profile',
-          style: TextStyle(
-            fontFamily: 'Quando'
-          ),
+          style: TextStyle(fontFamily: 'Quando'),
         ),
         centerTitle: true,
         elevation: 20.0,
@@ -31,24 +28,26 @@ class ProfileScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-               CircleAvatar(
-                 backgroundImage: AssetImage(
-                   'images/splash.png',
-                 ),
-                 radius: 90,
-                 backgroundColor: Colors.grey[200],
-               ),
+              CircleAvatar(
+                backgroundImage: AssetImage(
+                  'images/splash.png',
+                ),
+                radius: 90,
+                backgroundColor: Colors.grey[200],
+              ),
               SizedBox(height: 40),
               Text(
                 'NAME',
                 style: TextStyle(
+                    fontFamily: 'Quando',
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black54),
+                    color: Colors.white),
               ),
               Text(
                 'Taroal',
                 style: TextStyle(
+                    fontFamily: 'Quando',
                     fontSize: 25,
                     color: Colors.deepPurple,
                     fontWeight: FontWeight.bold),
@@ -57,13 +56,32 @@ class ProfileScreen extends StatelessWidget {
               Text(
                 'EMAIL',
                 style: TextStyle(
+                    fontFamily: 'Quando',
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black54),
+                    color: Colors.white),
               ),
               Text(
                 'taroal@web.de',
                 style: TextStyle(
+                    fontFamily: 'Quando',
+                    fontSize: 25,
+                    color: Colors.deepPurple,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'LAST SCORE',
+                style: TextStyle(
+                    fontFamily: 'Quando',
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              Text(
+                '.../50',
+                style: TextStyle(
+                    fontFamily: 'Quando',
                     fontSize: 25,
                     color: Colors.deepPurple,
                     fontWeight: FontWeight.bold),

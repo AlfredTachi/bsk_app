@@ -25,30 +25,31 @@ class _HomepageState extends State<Homepage> {
     'images/examQuestion.png',
   ];
 
-   List<String> descriptions = [
-    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+  List<String> descriptions = [
+    'Geschichte, Grundbegriffe und Arten von Betriebssystemen.',
+    'Parallelität und Speedup, Arten von Prozessen, Systemaufrufe, Prozesserzeugung, -terminierung und -zustände, Threads und Multithreading.',
+    'IPC - Pipes, FIFOs, Shared Memory, Signale - und Race Condition, Semaphore/Mutex, Barrieren, Monitoren.',
+    'Scheduling, Optimierungsproblem des Scheduling Algorithmen.',
+    'Speicherverwaltung, Seitenersetzungsalgorithmen.',
+    'Grundlagen der Dateisysteme',
+    'Terminologie, Zugriffsschutz, verdeckte Kanäle, Grundlagen der Authentifizierung, Secure Coding.',
+    'Zusammenfassung der Fragen aus alten.',
   ];
 
   Widget customcard(String kapitelName, String image, String description) {
     return Padding(
-      padding: EdgeInsets.all(
-        20.0,
+      padding: EdgeInsets.symmetric(
+        horizontal: 15.0,
+        vertical: 10.0,
       ),
       child: InkWell(
           onTap: () async {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => Getjson(kapitelName), 
+              builder: (context) => Getjson(kapitelName: kapitelName),
             ));
           },
           child: Material(
-              color:  Colors.indigoAccent,
+              color: Colors.indigoAccent,
               elevation: 10.0,
               borderRadius: BorderRadius.circular(20.0),
               child: Container(
@@ -105,10 +106,9 @@ class _HomepageState extends State<Homepage> {
   }
 
   @override
-  Widget build(BuildContext context) {   
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitDown, DeviceOrientation.portraitUp
-    ]);
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(

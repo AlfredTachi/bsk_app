@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
 class Resultpage extends StatefulWidget {
-  int points;
-  Resultpage({Key key, @required this.points}) : super(key: key);
+  final points;
+  final totalPoints;
+  Resultpage({Key key, @required this.points, @required this.totalPoints}) : super(key: key);
 
   @override
-  _ResultpageState createState() => _ResultpageState(points);
+  _ResultpageState createState() => _ResultpageState(points, totalPoints);
 }
 
 class _ResultpageState extends State<Resultpage> {
-
-  int points;
-  _ResultpageState(this.points);
+  var totalPoints;
+  var points;
+  _ResultpageState(this.points, this.totalPoints);
 
   List<String> images = [
     'images/bad.png',
@@ -26,13 +27,13 @@ class _ResultpageState extends State<Resultpage> {
   void initState() {
     if (points < 20) {
       image = images[0];
-      message = 'Du sollst dich anstrengen...\n' + 'Du hast $points Punkte erreicht !';
+      message = 'Du sollst dich anstrengen...\n' + 'Du hast $points/$totalPoints Punkte erreicht !';
     } else if (points < 35) {
       image = images[1];
-      message = 'Du kannst besser machen...\n' + 'Du hast $points Punkte erreicht !';
+      message = 'Du kannst besser machen...\n' + 'Du hast $points/$totalPoints Punkte erreicht !';
     } else {
       image = images[2];
-      message = 'Gute Arbeit...\n' + 'Du hast $points Punkte erreicht !';
+      message = 'Gute Arbeit...\n' + 'Du hast $points/$totalPoints Punkte erreicht !';
     }
     super.initState();
   }
