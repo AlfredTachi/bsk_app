@@ -225,23 +225,25 @@ class _QuizpageState extends State<Quizpage> {
       child: WillPopScope(
         onWillPop: onWillPop,
         child: Scaffold(
-          backgroundColor: Colors.indigo,
+          backgroundColor: Colors.indigo[100],
           body: Column(
             children: <Widget>[
               Align(
                 alignment: Alignment.topLeft,
                 child: OutlineButton(
+                  highlightElevation: 20.0,
+                  borderSide: BorderSide(width: 3.0, color: Colors.indigo),
                   child: Padding(
                       padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
                       child: Icon(
                         Icons.arrow_back,
                         size: 30.0,
-                        color: Colors.white,
+                        color: Colors.indigo,
                       )),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0))),
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)
+                          /*topRight: Radius.circular(20.0),
+                          bottomRight: Radius.circular(20.0)*/)),
                   onPressed: () async {
                     await Dialogs.yesNoDialog(
                         context,
@@ -262,6 +264,7 @@ class _QuizpageState extends State<Quizpage> {
                           ? myData[0][i.toString()]
                           : '!! Daten werden geladen ...',
                       style: TextStyle(
+                        color: Colors.indigo[900],
                         fontSize: 16.0,
                         fontFamily: 'Quando',
                       )),
@@ -288,7 +291,7 @@ class _QuizpageState extends State<Quizpage> {
                     child: Text(
                       showTimer ?? 'Timer wird gestartet...',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.indigo[900],
                           fontSize: 35.0,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Quando'),

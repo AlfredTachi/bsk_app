@@ -25,19 +25,20 @@ class _SplashscreenState extends State<Splashscreen> {
             child: Stack(
       fit: StackFit.expand,
       children: <Widget>[
-        Container(decoration: BoxDecoration(color: Colors.indigo)),
+        Container(
+            decoration: BoxDecoration(color: Colors.indigo)),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 120.0, right: 20.0, left: 20.0),
+              padding: EdgeInsets.only(top: 50.0, right: 20.0, left: 20.0),
               child: Material(
                 color: Colors.grey[400],
                 elevation: 10.0,
                 borderRadius: BorderRadius.circular(20.0),
                 child: Container(
-                  height: 400.0,
-                  width: 400.0,
+                  height: 330,
+                  width: MediaQuery.of(context).size.width,
                   child: ClipRect(
                     child: Image(
                       fit: BoxFit.contain,

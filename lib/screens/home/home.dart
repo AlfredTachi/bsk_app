@@ -39,7 +39,7 @@ class _HomepageState extends State<Homepage> {
   Widget customcard(String kapitelName, String image, String description) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: 15.0,
+        horizontal: 20.0,
         vertical: 10.0,
       ),
       child: InkWell(
@@ -109,74 +109,80 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
-    return WillPopScope(
-      onWillPop: onWillPop,
-      child: Scaffold(
-        backgroundColor: Colors.indigo,
-        appBar: AppBar(
-          leading: IconButton(
-              color: Colors.white,
-              icon: Icon(Icons.home),
-              onPressed: () {
-                Navigator.of(context).pushReplacementNamed('/homepage');
-              }),
-          title: Text(
-            'BskQuiz',
-            style: TextStyle(
-              fontFamily: 'Qando',
-            ),
-          ),
-          elevation: 20.0,
-          centerTitle: true,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.exit_to_app,
-                color: Colors.white,
-              ),
-              onPressed: () async {
-                await Dialogs.yesNoDialog(
-                    context,
-                    'Aussloggen',
-                    'Möchtest du dich wircklich aussloggen?',
-                    _firebaseAuth,
-                    '/loginpage');
-              },
-            ),
-          ],
-        ),
-        body: ListView(
-          children: <Widget>[
-            customcard('Einführung & Grundlagen', images[0], descriptions[0]),
-            customcard('Prozesse und Threads', images[1], descriptions[1]),
-            customcard('IPC und Race Conditions', images[2], descriptions[2]),
-            customcard('Scheduling', images[3], descriptions[3]),
-            customcard('Speicherverwaltung', images[4], descriptions[4]),
-            customcard('Dateisysteme', images[5], descriptions[5]),
-            customcard('IT-Sicherheit', images[6], descriptions[6]),
-            customcard('Alte Klausurfragen', images[7], descriptions[7]),
-          ],
-        ),
-        bottomNavigationBar: CurvedNavigationBar(
-          color: Colors.white,
+    return SafeArea(
+          child: WillPopScope(
+        onWillPop: onWillPop,
+        child: Scaffold(
           backgroundColor: Colors.indigo,
-          buttonBackgroundColor: Colors.white,
-          height: 50,
-          items: <Widget>[
-            Icon(Icons.book, size: 20, color: Colors.indigo),
-            Icon(Icons.info_outline, size: 20, color: Colors.indigo),
-            Icon(Icons.account_circle, size: 20, color: Colors.indigo)
-          ],
-          animationDuration: Duration(
-            milliseconds: 200,
+          appBar: AppBar(
+            leading: IconButton(
+                color: Colors.white,
+                icon: Icon(Icons.home),
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed('/homepage');
+                }),
+            title: Text(
+              'BskQuiz',
+              style: TextStyle(
+                fontFamily: 'Qando',
+              ),
+            ),
+            elevation: 20.0,
+            centerTitle: true,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.exit_to_app,
+                  color: Colors.white,
+                ),
+                onPressed: () async {
+                  await Dialogs.yesNoDialog(
+                      context,
+                      'Aussloggen',
+                      'Möchtest du dich wircklich aussloggen?',
+                      _firebaseAuth,
+                      '/loginpage');
+                },
+              ),
+            ],
           ),
-          index: 1,
-          onTap: (index) {
-            if (index == 2) {
-              Navigator.of(context).pushNamed('/profilepage');
-            }
-            debugPrint('Currrent Index is $index');
-          },
+          body: ListView(
+            children: <Widget>[
+              customcard('Einführung & Grundlagen', images[0], descriptions[0]),
+              customcard('Prozesse und Threads', images[1], descriptions[1]),
+              customcard('IPC und Race Conditions', images[2], descriptions[2]),
+              customcard('Scheduling', images[3], descriptions[3]),
+              customcard('Speicherverwaltung', images[4], descriptions[4]),
+              customcard('Dateisysteme', images[5], descriptions[5]),
+              customcard('IT-Sicherheit', images[6], descriptions[6]),
+              customcard('Alte Klausurfragen', images[7], descriptions[7]),
+            ],
+          ),
+          bottomNavigationBar: CurvedNavigationBar(
+            color: Colors.white,
+            backgroundColor: Colors.indigo,
+            buttonBackgroundColor: Colors.white,
+            height: 50,
+            items: <Widget>[
+              Icon(Icons.book, size: 20, color: Colors.indigo),
+              Icon(Icons.info_outline, size: 20, color: Colors.indigo),
+              Icon(Icons.account_circle, size: 20, color: Colors.indigo)
+            ],
+            animationDuration: Duration(
+              milliseconds: 200,
+            ),
+            index: 1,
+            onTap: (index) {
+              if (index == 0) {
+                Navigator.of(context).pushReplacementNamed('/viewonedrivepage');
+              } else if (index == 1) {
+                Navigator.of(context).pushReplacementNamed('/moreinfopage');
+              } else if (index ==2) {
+                Navigator.of(context).pushReplacementNamed('/profilepage');
+              }
+              debugPrint('Currrent Index is $index');
+            },
+          ),
         ),
       ),
     );

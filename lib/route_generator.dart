@@ -1,9 +1,11 @@
+import 'package:bsk_app/screens/home/more_info_bsk/more_info_bsk.dart';
 import 'package:flutter/material.dart';
 import 'package:bsk_app/screens/home/home.dart';
 import 'package:bsk_app/screens/authenticate/login/login.dart';
 import 'package:bsk_app/screens/splash/splash.dart';
 import 'package:bsk_app/screens/authenticate/signup/signup.dart';
-import 'package:bsk_app/screens/profile/profile.dart';
+import 'package:bsk_app/screens/home/profile/profile.dart';
+import 'package:bsk_app/screens/home/view_zf_from_onedrive/view_zf_from_onedrive.dart';
 
 class RouteGenerator {
 
@@ -32,6 +34,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Homepage());
       case '/profilepage':
         return MaterialPageRoute(builder: (_) => ProfileScreen());
+      case '/viewonedrivepage':
+        return MaterialPageRoute(builder: (_) => SummaryDir());
+      case '/moreinfopage':
+        return MaterialPageRoute(builder: (_) => MoreInfoBsk());
       default:
         return _errorRoute();
     }
