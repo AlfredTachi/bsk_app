@@ -12,7 +12,7 @@ class _MoreInfoBskState extends State<MoreInfoBsk> {
   List<String> _descriptions = [
     'Meine Bsk Youtube Playlist',
     'Moodle',
-    'Placeholder 1',
+    'ownCloud',
     'Placeholder 2',
     'Placeholder 3',
   ];
@@ -20,7 +20,7 @@ class _MoreInfoBskState extends State<MoreInfoBsk> {
   List<String> _url = [
     'https://www.youtube.com/playlist?list=PLW_T1H3VUi-4NJHebZEkq-5mrQslSieer',
     'https://moodle.hs-worms.de/moodle/',
-    '',
+    'https://cloud2.rz-fuhrmann.de/index.php/s/2w9MVu5Tx7EITbh?path=%2F',
     '',
     '',
   ];
@@ -42,7 +42,7 @@ class _MoreInfoBskState extends State<MoreInfoBsk> {
   Widget customcard(String description, String url) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: 10.0,
+        vertical: 6.0,
       ),
       child: InkWell(
         onTap: () => _launcher(url),
