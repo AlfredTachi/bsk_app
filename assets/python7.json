@@ -1,0 +1,88 @@
+[
+    {
+        "1": "Was versteht man unter dem Begriff “Quasiparallelität”?",
+        "2": "Erklären Sie prägnant den Begriff `Spooling‘.",
+        "3": "Was verstehen Sie unter dem Begriff `Systemaufruf‘?",
+        "4": "Wie unterscheiden sich die Systemaufrufe fork() und exec*(), die Sie in den Übungen verwendet haben?",
+        "5": "Welchen Vorteil bringt beim Forking das Copy-on-Write-Prinzip?",
+        "6": "Aus welchen Gründen kann ein Prozess beendet werden?",
+        "7": "Welche Vorteile bieten Threads gegenüber Prozessen?",
+        "8": "Wie kann eine Verwundbarkeit zu einer Bedrohung werden?",
+        "9": "Weshalb ist Multiprogramming sicherheitskritisch?",
+        "10": "Erklären Sie prägnant den Begriff Prepaging"
+    },
+    {
+        "1": {
+            "a": "pp",
+            "b": "ppp",
+            "c": "3p",
+            "d": "Die CPU wechselt durch Multiprogramming sehr schnell zwischen den Prozessen."
+        },
+        "2": {
+            "a": "typedef",
+            "b": "typeof",
+            "c": "I/O bzw. Ein-/ Ausgabe wird mit Prozessausführung parallelisiert.",
+            "d": "find"
+        },
+        "3": {
+            "a": "Ein Funktionsaufruf eines Prozesses, der eine Funktion innerhalb des Betriebssystem-Kernels auslöst.",
+            "b": "def",
+            "c": "void",
+            "d": "function"
+        },
+        "4": {
+            "a": "cout",
+            "b": "fork() kopiert einen Prozess. Und exec*() ersetzt in einem laufenden Prozess das alte Programm durch ein neues.",
+            "c": "println",
+            "d": "stderr"
+        },
+        "5": {
+            "a": "typedef",
+            "b": "typeof",
+            "c": "type",
+            "d": "Der Prozessspeicher wird effizienter Weise erst dann in einen eigenen Speicherbereich kopiert, wenn er überschrieben wird."
+        },
+        "6": {
+            "a": "Normales Beenden\nBeenden aufgrund eines Fehlers\nBeenden aufgrund eines schwerwiegenden Fehler\nBeenden durch einen anderen Prozess",
+            "b": "def",
+            "c": "void",
+            "d": "function"
+        },
+        "7": {
+            "a": "typedef",
+            "b": "typeof",
+            "c": "Erzeugung weniger Overhead\nGeringerer Kommunikationsaufwand\nIhre Erzeugung ist schneller",
+            "d": "find"
+        },
+        "8": {
+            "a": "func",
+            "b": "Durch die Existenz einer Möglichkeit diese Verwundbarkeit auszunutzen, um die Schutzziele zu verletzen.",
+            "c": "void",
+            "d": "function"
+        },
+        "9": {
+            "a": "typedef",
+            "b": "Denn Prozesse teilen sich die Ressourcen.",
+            "c": "type",
+            "d": "find"
+        },
+        "10": {
+            "a": "func",
+            "b": "def",
+            "c": "void",
+            "d": "Ein Prinzip, bei dem die Seiten vor der Verwendung folglich geladen werden."
+        }
+    },
+    {
+        "1": "Die CPU wechselt durch Multiprogramming sehr schnell zwischen den Prozessen.",
+        "2": "I/O bzw. Ein-/ Ausgabe wird mit Prozessausführung parallelisiert.",
+        "3": "Ein Funktionsaufruf eines Prozesses, der eine Funktion innerhalb des Betriebssystem-Kernels auslöst.",
+        "4": "fork() kopiert einen Prozess. Und exec*() ersetzt in einem laufenden Prozess das alte Programm durch ein neues.",
+        "5": "Der Prozessspeicher wird effizienter Weise erst dann in einen eigenen Speicherbereich kopiert, wenn er überschrieben wird.",
+        "6": "Normales Beenden\nBeenden aufgrund eines Fehlers\nBeenden aufgrund eines schwerwiegenden Fehler\nBeenden durch einen anderen Prozess",
+        "7": "Erzeugung weniger Overhead\nGeringerer Kommunikationsaufwand\nIhre Erzeugung ist schneller",
+        "8": "Durch die Existenz einer Möglichkeit diese Verwundbarkeit auszunutzen, um die Schutzziele zu verletzen.",
+        "9": "Denn Prozesse teilen sich die Ressourcen.",
+        "10": "Ein Prinzip, bei dem die Seiten vor der Verwendung folglich geladen werden."
+    }
+]
