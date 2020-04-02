@@ -8,6 +8,9 @@ import 'package:bsk_app/shared/loading.dart';
 import 'package:bsk_app/shared/dialogs.dart';
 import 'package:flutter/services.dart';
 
+import 'progress_painter.dart';
+import 'dart:ui';
+
 class Getjson extends StatelessWidget {
   // "kapitelName" as a parameter
   final String kapitelName;
@@ -70,7 +73,8 @@ class Quizpage extends StatefulWidget {
   _QuizpageState createState() => _QuizpageState(myData);
 }
 
-class _QuizpageState extends State<Quizpage> {
+class _QuizpageState extends State<Quizpage>
+    with SingleTickerProviderStateMixin {
   final myData;
   _QuizpageState(this.myData);
 
@@ -83,8 +87,8 @@ class _QuizpageState extends State<Quizpage> {
   var choosQuesRandArray;
   // variable to iterate
   int j = 1;
-  int timer = 60;
-  String showTimer = '60';
+  int timer = 30;
+  String showTimer = '30';
 
   bool cancelTimer = false;
   bool answerIsNotChecked = true;
@@ -98,6 +102,61 @@ class _QuizpageState extends State<Quizpage> {
 
   int numberOfQuestion = 10;
   int totalPoints = 10 * 5;
+
+  
+  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+  double _percentage;
+  double _nextPercentage;
+  AnimationController _progressAnimationController;
+
+  initAnimationController() {
+    _progressAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 30),
+    )..addListener(
+        () {
+          setState(() {
+            _percentage = lerpDouble(_percentage, _nextPercentage,
+                _progressAnimationController.value);
+          });
+        },
+      );
+  }
+
+  publishProgress() {
+    setState(() {
+      _percentage = _nextPercentage;
+      _nextPercentage += 1.0;
+      if (_nextPercentage > 30.0) {
+        _percentage = 0.0;
+        _nextPercentage = 0.0;
+      }
+      _progressAnimationController.forward(from: 0.0);
+    });
+  }
+
+
+  progressView() {
+    return CustomPaint(
+      child: Center(
+        child: Text(
+          showTimer,
+          style: TextStyle(
+              color: Colors.indigo[900],
+              fontSize: 35.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Quando'),
+        ),
+      ),
+      foregroundPainter: ProgressPainter(
+          defaultCircleColor: Colors.indigoAccent,
+          percentageCompletedCircleColor: Colors.white,
+          completedPercentage: _percentage,
+          circleWidth: 25.0),
+    );
+  }
+  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 
   // function for choosing question randomly
   void choosingQuesRandomlyFunc() {
@@ -120,7 +179,13 @@ class _QuizpageState extends State<Quizpage> {
   void initState() {
     choosingQuesRandomlyFunc();
     starTimer();
+    // startProgress();
     super.initState();
+
+    //
+    _percentage = 0.0;
+    _nextPercentage = 0.0;
+    initAnimationController();
   }
 
   // overriding the setState function to be called only if mounted
@@ -141,6 +206,7 @@ class _QuizpageState extends State<Quizpage> {
         } else if (cancelTimer == true) {
           t.cancel();
         } else {
+          publishProgress();
           timer -= 1;
         }
         showTimer = timer.toString();
@@ -151,14 +217,19 @@ class _QuizpageState extends State<Quizpage> {
   void nextQuestion() async {
     answerIsNotChecked = true;
     cancelTimer = false;
-    timer = 60;
+    _percentage = 0.0;
+      _nextPercentage = 0.0;
+    timer = 30;
     setState(() {
       if (j < numberOfQuestion) {
         i = choosQuesRandArray[j];
         j++;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => Resultpage(points: points, totalPoints: totalPoints,),
+          builder: (context) => Resultpage(
+            points: points,
+            totalPoints: totalPoints,
+          ),
         ));
       }
       buttonColor["a"] = Colors.indigoAccent;
@@ -243,14 +314,11 @@ class _QuizpageState extends State<Quizpage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)
                           /*topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0)*/)),
+                          bottomRight: Radius.circular(20.0)*/
+                          )),
                   onPressed: () async {
-                    await Dialogs.yesNoDialog(
-                        context,
-                        'BskQuiz abbrechen',
-                        'Quiz abbrechen?',
-                        null,
-                        '/homepage');
+                    await Dialogs.yesNoDialog(context, 'BskQuiz abbrechen',
+                        'Quiz abbrechen?', null, '/homepage');
                   },
                 ),
               ),
@@ -284,19 +352,10 @@ class _QuizpageState extends State<Quizpage> {
                 ),
               ),
               Expanded(
-                flex: 1,
+                flex: 2,
                 child: Container(
-                  alignment: Alignment.topCenter,
-                  child: Center(
-                    child: Text(
-                      showTimer ?? 'Timer wird gestartet...',
-                      style: TextStyle(
-                        color: Colors.indigo[900],
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Quando'),
-                    ),
-                  ),
+                  alignment: Alignment.center,
+                  child: progressView(),
                 ),
               ),
             ],

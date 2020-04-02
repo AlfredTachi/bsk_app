@@ -13,16 +13,16 @@
     },
     {
         "1": {
-            "a": "pp",
-            "b": "ppp",
-            "c": "3p",
+            "a": "Mehrere Prozesse laufen zwar parallel.",
+            "b": "Die CPU wechselt durch Multitasking sehr schnell zwischen den Prozessen.",
+            "c": "Die CPU wechselt sehr schnell zwischen den Prozessoren.",
             "d": "Die CPU wechselt durch Multiprogramming sehr schnell zwischen den Prozessen."
         },
         "2": {
-            "a": "typedef",
-            "b": "typeof",
+            "a": "I/O bzw. Ein-/ Ausgabe-Geräte brauchen keinen Treiber.",
+            "b": "I/O bzw. Ein-/ Ausgabe-Treiber wird direkt im Betriebssystem integriert.",
             "c": "I/O bzw. Ein-/ Ausgabe wird mit Prozessausführung parallelisiert.",
-            "d": "find"
+            "d": "Keine richtige Antwort."
         },
         "3": {
             "a": "Ein Funktionsaufruf eines Prozesses, der eine Funktion innerhalb des Betriebssystem-Kernels auslöst.",
@@ -31,10 +31,10 @@
             "d": "function"
         },
         "4": {
-            "a": "cout",
+            "a": "fork() duplitiert den Prozess und exec*() führt ihn aus. ",
             "b": "fork() kopiert einen Prozess. Und exec*() ersetzt in einem laufenden Prozess das alte Programm durch ein neues.",
-            "c": "println",
-            "d": "stderr"
+            "c": "fork() kann nur nach der Ausführung von exec*() ausgeführt werden.",
+            "d": "fork() und exec*() erledigen die gleiche Aufgabe, fork() wird in neuen Betriebssystemen verwendet."
         },
         "5": {
             "a": "typedef",
@@ -61,10 +61,10 @@
             "d": "function"
         },
         "9": {
-            "a": "typedef",
+            "a": "Denn es ist multiprogrammiert.",
             "b": "Denn Prozesse teilen sich die Ressourcen.",
-            "c": "type",
-            "d": "find"
+            "c": "Denn es wird von mehreren Entwicklern Programmiert.",
+            "d": "Denn es gibt Multiprozesse im Beriebssystem."
         },
         "10": {
             "a": "func",
