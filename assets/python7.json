@@ -13,63 +13,63 @@
     },
     {
         "1": {
-            "a": "pp",
-            "b": "ppp",
-            "c": "3p",
+            "a": "Mehrere Prozesse laufen zwar parallel.",
+            "b": "Die CPU wechselt durch Multitasking sehr schnell zwischen den Prozessen.",
+            "c": "Die CPU wechselt sehr schnell zwischen den Prozessoren.",
             "d": "Die CPU wechselt durch Multiprogramming sehr schnell zwischen den Prozessen."
         },
         "2": {
-            "a": "typedef",
-            "b": "typeof",
+            "a": "I/O bzw. Ein-/ Ausgabe-Geräte brauchen keinen Treiber.",
+            "b": "I/O bzw. Ein-/ Ausgabe-Treiber wird direkt im Betriebssystem integriert.",
             "c": "I/O bzw. Ein-/ Ausgabe wird mit Prozessausführung parallelisiert.",
-            "d": "find"
+            "d": "Keine richtige Antwort."
         },
         "3": {
             "a": "Ein Funktionsaufruf eines Prozesses, der eine Funktion innerhalb des Betriebssystem-Kernels auslöst.",
-            "b": "def",
-            "c": "void",
-            "d": "function"
+            "b": "Ein Funktionsaufruf eines Prozesses, der eine Funktion innerhalb der CPU auslöst.",
+            "c": "Anruf zwischen Prozess und Betriebssystem.",
+            "d": "Notruf des Betriebssystems."
         },
         "4": {
-            "a": "cout",
+            "a": "fork() duplitiert den Prozess und exec*() führt ihn aus. ",
             "b": "fork() kopiert einen Prozess. Und exec*() ersetzt in einem laufenden Prozess das alte Programm durch ein neues.",
-            "c": "println",
-            "d": "stderr"
+            "c": "fork() kann nur nach der Ausführung von exec*() ausgeführt werden.",
+            "d": "fork() und exec*() erledigen die gleiche Aufgabe, fork() wird in neuen Betriebssystemen verwendet."
         },
         "5": {
-            "a": "typedef",
-            "b": "typeof",
-            "c": "type",
+            "a": "Kopieren der neuen Prozesse nach Forken.",
+            "b": "Das Copy-on-Write-Prinzip bringt keinen Vorteil beim Forking.",
+            "c": "Reservierung des Speicherbereichs nach Forken.",
             "d": "Der Prozessspeicher wird effizienter Weise erst dann in einen eigenen Speicherbereich kopiert, wenn er überschrieben wird."
         },
         "6": {
-            "a": "Normales Beenden\nBeenden aufgrund eines Fehlers\nBeenden aufgrund eines schwerwiegenden Fehler\nBeenden durch einen anderen Prozess",
-            "b": "def",
-            "c": "void",
-            "d": "function"
+            "a": "Normales Beenden\nBeenden aufgrund eines Fehlers",
+            "b": "Beenden aufgrund eines schwerwiegenden Fehler\nBeenden durch einen anderen Prozess",
+            "c": "Normales Beenden\nBeenden aufgrund eines Fehlers\nBeenden aufgrund eines schwerwiegenden Fehler\nBeenden durch einen anderen Prozess",
+            "d": "Keine richtige Antwort."
         },
         "7": {
-            "a": "typedef",
-            "b": "typeof",
+            "a": "Erzeugen viel Overhead",
+            "b": "Hoher Kommunikationsaufwand",
             "c": "Erzeugung weniger Overhead\nGeringerer Kommunikationsaufwand\nIhre Erzeugung ist schneller",
-            "d": "find"
+            "d": "Keine Vorteile"
         },
         "8": {
-            "a": "func",
+            "a": "Indem die Verwundbarkeit zu einer Schwachstelle wird.",
             "b": "Durch die Existenz einer Möglichkeit diese Verwundbarkeit auszunutzen, um die Schutzziele zu verletzen.",
-            "c": "void",
-            "d": "function"
+            "c": "Durch die Verletzung der Schutzziele.",
+            "d": "Verwundbarkeit heisst zugleich Bedrohung."
         },
         "9": {
-            "a": "typedef",
+            "a": "Denn es ist multiprogrammiert.",
             "b": "Denn Prozesse teilen sich die Ressourcen.",
-            "c": "type",
-            "d": "find"
+            "c": "Denn es wird von mehreren Entwicklern Programmiert.",
+            "d": "Denn es gibt Multiprozesse im Beriebssystem."
         },
         "10": {
-            "a": "func",
-            "b": "def",
-            "c": "void",
+            "a": "Ein Prinzip, bei dem die Seiten nach der Verwendung folglich geladen werden.",
+            "b": "Ein Prinzip, bei dem Speicherbereich allokiert wird.",
+            "c": "Es ist ein Scheduling-Algorithmus.",
             "d": "Ein Prinzip, bei dem die Seiten vor der Verwendung folglich geladen werden."
         }
     },
