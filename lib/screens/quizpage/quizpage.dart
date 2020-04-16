@@ -20,28 +20,21 @@ class Getjson extends StatelessWidget {
   // function sets the asset to a particular JSON file
   setJsonFile() {
     if (kapitelName == 'Einführung & Grundlagen') {
-      jsonFileToLoad = 'assets/python.json';
+      jsonFileToLoad = 'assets/01_intro.json';
     } else if (kapitelName == 'Prozesse und Threads') {
-      // jsonFileToLoad = 'assets/pt.json';
-      jsonFileToLoad = 'assets/python1.json';
+      jsonFileToLoad = 'assets/02_process.json';
     } else if (kapitelName == 'IPC & Race Conditions') {
-      // jsonFileToLoad = 'assets/ipc.json';
-      jsonFileToLoad = 'assets/python2.json';
+      jsonFileToLoad = 'assets/03_ipc.json';
     } else if (kapitelName == 'Scheduling') {
-      // jsonFileToLoad = 'assets/scheduling.json';
-      jsonFileToLoad = 'assets/python3.json';
+      jsonFileToLoad = 'assets/04_scheduling.json';
     } else if (kapitelName == 'Speicherverwaltung') {
-      // jsonFileToLoad = 'assets/storage.json';
-      jsonFileToLoad = 'assets/python4.json';
+      jsonFileToLoad = 'assets/05_storage.json';
     } else if (kapitelName == 'Dateisysteme') {
-      // jsonFileToLoad = 'assets/filesysteme.json';
-      jsonFileToLoad = 'assets/python5.json';
+      jsonFileToLoad = 'assets/06_fileSystem.json';
     } else if (kapitelName == 'IT-Sicherheit') {
-      // jsonFileToLoad = 'assets/itsec.json';
-      jsonFileToLoad = 'assets/python6.json';
+      jsonFileToLoad = 'assets/07_itsec.json';
     } else {
-      // jsonFileToLoad = 'assets/exam.json';
-      jsonFileToLoad = 'assets/python7.json';
+      jsonFileToLoad = 'assets/08_exam.json';
     }
   }
 

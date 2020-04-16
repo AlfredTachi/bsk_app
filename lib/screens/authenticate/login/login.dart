@@ -139,12 +139,13 @@ class _LoginpageState extends State<Loginpage> {
                                                 'Diese Anmeldeinformationen stimmt mit keinem der vorhandenen Accounts überein! Registrieren Sie sich';
                                             loading = false;
                                           });
-                                        }
-                                        print('User with uid: ' +
+                                        } else {
+                                          print('User with uid: ' +
                                             result.uid +
                                             ' signed in!');
                                         Navigator.of(context)
                                             .pushReplacementNamed('/homepage');
+                                        }
                                       } catch (e) {
                                         print(e.toString());
                                       }
@@ -187,6 +188,7 @@ class _LoginpageState extends State<Loginpage> {
                                     } else {
                                       setState(() {
                                         loading = true;
+                                        email = 'Anonymous';
                                       });
                                       print('anonym signed in');
                                       print(userFromFirebaseUser.uid);
@@ -297,6 +299,9 @@ class _LoginpageState extends State<Loginpage> {
           _buildSocialBtn(
             () async {
               _firebaseAuth.signInWithGoogle().whenComplete(() {
+                setState(() {
+                  email = _firebaseAuth.email;
+                });
                 Navigator.of(context).pushReplacementNamed('/homepage');
               });
             },

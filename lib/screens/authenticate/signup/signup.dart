@@ -68,26 +68,6 @@ class _SignuppageState extends State<Signuppage> {
                                                 bottom: BorderSide(
                                                     color: Colors.grey[100]))),
                                         child: TextFormField(
-                                            validator: (value) => value.isEmpty
-                                                ? 'Bitte Benutzername eingeben'
-                                                : null,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                name = value;
-                                              });
-                                            },
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            decoration:
-                                                usernameInputDecoration),
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.all(8.0),
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.grey[100]))),
-                                        child: TextFormField(
                                           validator: (value) => value.isEmpty
                                               ? 'Bitte eine valide Email eingeben!'
                                               : null,
@@ -142,7 +122,8 @@ class _SignuppageState extends State<Signuppage> {
                                           print('User created uid: ' +
                                               result.uid);
                                           Navigator.of(context)
-                                              .pushReplacementNamed('/homepage');
+                                              .pushReplacementNamed(
+                                                  '/homepage');
                                         }
                                       } catch (e) {
                                         print(e.toString());
@@ -180,7 +161,7 @@ class _SignuppageState extends State<Signuppage> {
                                 SizedBox(
                                   height: 40,
                                 ),
-                                _buildSignInBtn()
+                                _buildSignInBtn('/loginpage', 'Schon registriert? ', 'Sich einloggen')
                               ],
                             ),
                           ),
@@ -194,16 +175,16 @@ class _SignuppageState extends State<Signuppage> {
     );
   }
 
-  Widget _buildSignInBtn() {
+  Widget _buildSignInBtn(String route, String question, String action) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushReplacementNamed('/loginpage');
+        Navigator.of(context).pushReplacementNamed(route);
       },
       child: RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: 'Schon registriert? ',
+              text: question,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 14.0,
@@ -211,7 +192,7 @@ class _SignuppageState extends State<Signuppage> {
                   fontFamily: 'Quando'),
             ),
             TextSpan(
-              text: 'Sich einloggen',
+              text: action,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 14.0,
