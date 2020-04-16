@@ -45,6 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           FirebaseStorage.instance.ref().child(fileName);
       StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
       StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+      print(fileName);
       setState(() {
         Scaffold.of(context)
             .showSnackBar(SnackBar(content: Text('Profilbild hochgeladen!')));
