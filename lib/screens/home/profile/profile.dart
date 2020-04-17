@@ -23,7 +23,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
       setState(() {
         _image = image;
-        print('Image Path $_image');
       });
       Navigator.of(context).pop();
     }
@@ -33,7 +32,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       var image = await ImagePicker.pickImage(source: ImageSource.camera);
       setState(() {
         _image = image;
-        print('Image Path $_image');
       });
       Navigator.of(context).pop();
     }
@@ -173,7 +171,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.white),
                     ),
                     Text(
-                      'taroal@web.de',
+                      _firebaseAuth.getEmail(),
+                      // 'taroal@web.de',
                       style: TextStyle(
                           fontFamily: 'Quando',
                           fontSize: 20,

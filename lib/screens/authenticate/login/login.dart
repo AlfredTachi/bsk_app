@@ -11,14 +11,15 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+
   final AuthService _firebaseAuth = AuthService();
   final _formKey = GlobalKey<FormState>();
-  bool loading = false;
+  bool _loading = false;
 
   // text fiel state
-  String email = '';
-  String password = '';
-  String error = '';
+  String _email = '';
+  String _password = '';
+  String _error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class _LoginpageState extends State<Loginpage> {
         },
         child: WillPopScope(
           onWillPop: onWillPop,
-          child: loading
+          child: _loading
               ? Loading()
               : Scaffold(
                   backgroundColor: Colors.indigo,
@@ -73,7 +74,7 @@ class _LoginpageState extends State<Loginpage> {
                                               : null,
                                           onChanged: (value) {
                                             setState(() {
-                                              email = value;
+                                              _email = value;
                                             });
                                           },
                                           keyboardType:
@@ -89,7 +90,7 @@ class _LoginpageState extends State<Loginpage> {
                                               : null,
                                           onChanged: (value) {
                                             setState(() {
-                                              password = value;
+                                              _password = value;
                                             });
                                           },
                                           obscureText: true,
@@ -117,7 +118,7 @@ class _LoginpageState extends State<Loginpage> {
                                 SizedBox(
                                   height: 5.0,
                                 ),
-                                Text(error,
+                                Text(_error,
                                     style: TextStyle(
                                         color: Colors.red, fontSize: 14.0)),
                                 SizedBox(
@@ -127,22 +128,24 @@ class _LoginpageState extends State<Loginpage> {
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
                                       setState(() {
-                                        loading = true;
+                                        _loading = true;
                                       });
                                       try {
                                         dynamic result = await _firebaseAuth
                                             .signInWithEmailAndPassword(
-                                                email, password);
+                                                _email, _password);
                                         if (result == null) {
                                           setState(() {
-                                            error =
+                                            _error =
                                                 'Diese Anmeldeinformationen stimmt mit keinem der vorhandenen Accounts überein! Registrieren Sie sich';
-                                            loading = false;
+                                            _loading = false;
                                           });
                                         } else {
+                                          /// 
+                                          print(_email + ' signed in!');
                                           print('User with uid: ' +
                                             result.uid +
-                                            ' signed in!');
+                                            ' ');
                                         Navigator.of(context)
                                             .pushReplacementNamed('/homepage');
                                         }
@@ -182,16 +185,17 @@ class _LoginpageState extends State<Loginpage> {
                                         await _firebaseAuth.anonLogin();
                                     if (userFromFirebaseUser == null) {
                                       setState(() {
-                                        loading = false;
+                                        _loading = false;
                                       });
-                                      print('error signing in');
+                                      print('error anon signing in');
                                     } else {
                                       setState(() {
-                                        loading = true;
-                                        email = 'Anonymous';
+                                        _loading = true;
+                                        _email = 'Anonymous';
                                       });
-                                      print('anonym signed in');
-                                      print(userFromFirebaseUser.uid);
+                                      ///
+                                      print(_email);
+                                      print('anonym signed in! uid: ' + userFromFirebaseUser.uid);
                                       Navigator.of(context)
                                           .pushReplacementNamed('/homepage');
                                     }
@@ -300,8 +304,10 @@ class _LoginpageState extends State<Loginpage> {
             () async {
               _firebaseAuth.signInWithGoogle().whenComplete(() {
                 setState(() {
-                  email = _firebaseAuth.email;
+                  _email = _firebaseAuth.getEmail();
                 });
+                ///
+                print(_email);
                 Navigator.of(context).pushReplacementNamed('/homepage');
               });
             },
