@@ -96,7 +96,6 @@ class _QuizpageState extends State<Quizpage>
   int numberOfQuestion = 10;
   int totalPoints = 10 * 5;
 
-  
   /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
   double _percentage;
   double _nextPercentage;
@@ -128,7 +127,6 @@ class _QuizpageState extends State<Quizpage>
     });
   }
 
-
   progressView() {
     return CustomPaint(
       child: Center(
@@ -149,7 +147,6 @@ class _QuizpageState extends State<Quizpage>
     );
   }
   /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
 
   // function for choosing question randomly
   void choosingQuesRandomlyFunc() {
@@ -211,7 +208,7 @@ class _QuizpageState extends State<Quizpage>
     answerIsNotChecked = true;
     cancelTimer = false;
     _percentage = 0.0;
-      _nextPercentage = 0.0;
+    _nextPercentage = 0.0;
     timer = 30;
     setState(() {
       if (j < numberOfQuestion) {

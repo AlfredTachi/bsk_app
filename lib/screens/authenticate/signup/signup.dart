@@ -109,10 +109,18 @@ class _SignuppageState extends State<Signuppage> {
                                         loading = true;
                                       });
                                       try {
+                                         bool isConnected =
+                                            await checkInternetConnectivity();
                                         dynamic result = await _firebaseAuth
                                             .signUpWithEmailAndPassword(
                                                 email, password);
-                                        if (result == null) {
+                                        if (!isConnected) {
+                                          setState(() {
+                                            error =
+                                                'prüfe deine Internet-Verbindung!';
+                                            loading = false;
+                                          });
+                                        } else if (result == null) {
                                           setState(() {
                                             error =
                                                 'Email nicht valide oder bereits verwendet!';
@@ -161,7 +169,8 @@ class _SignuppageState extends State<Signuppage> {
                                 SizedBox(
                                   height: 40,
                                 ),
-                                _buildSignInBtn('/loginpage', 'Schon registriert? ', 'Sich einloggen')
+                                _buildSignInBtn('/loginpage',
+                                    'Schon registriert? ', 'Sich einloggen')
                               ],
                             ),
                           ),

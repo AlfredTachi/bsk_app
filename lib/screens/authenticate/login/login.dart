@@ -11,9 +11,9 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-
   final AuthService _firebaseAuth = AuthService();
   final _formKey = GlobalKey<FormState>();
+
   bool _loading = false;
 
   // text fiel state
@@ -104,7 +104,7 @@ class _LoginpageState extends State<Loginpage> {
                                   alignment: Alignment.centerRight,
                                   child: FlatButton(
                                     onPressed: () => print(
-                                        'Passwort-vergessen-Button angeklickt'),
+                                        'Passwort-vergessen-Button pressed'),
                                     padding: EdgeInsets.only(right: 0.0),
                                     child: Text(
                                       'Passwort vergessen?',
@@ -131,23 +131,32 @@ class _LoginpageState extends State<Loginpage> {
                                         _loading = true;
                                       });
                                       try {
+                                        bool isConnected =
+                                            await checkInternetConnectivity();
                                         dynamic result = await _firebaseAuth
                                             .signInWithEmailAndPassword(
                                                 _email, _password);
-                                        if (result == null) {
+                                        if (!isConnected) {
                                           setState(() {
                                             _error =
-                                                'Diese Anmeldeinformationen stimmt mit keinem der vorhandenen Accounts überein! Registrieren Sie sich';
+                                                'prüfe deine Internet-Verbindung!';
+                                            _loading = false;
+                                          });
+                                        } else if (result == null) {
+                                          setState(() {
+                                            _error =
+                                                'Diese Anmeldeinformationen stimmen mit keinem der vorhandenen Accounts überein! Registrieren Sie sich';
                                             _loading = false;
                                           });
                                         } else {
-                                          /// 
+                                          ///
                                           print(_email + ' signed in!');
                                           print('User with uid: ' +
-                                            result.uid +
-                                            ' ');
-                                        Navigator.of(context)
-                                            .pushReplacementNamed('/homepage');
+                                              result.uid +
+                                              ' ');
+                                          Navigator.of(context)
+                                              .pushReplacementNamed(
+                                                  '/homepage');
                                         }
                                       } catch (e) {
                                         print(e.toString());
@@ -181,23 +190,33 @@ class _LoginpageState extends State<Loginpage> {
                                 ),
                                 MaterialButton(
                                   onPressed: () async {
-                                    User userFromFirebaseUser =
-                                        await _firebaseAuth.anonLogin();
-                                    if (userFromFirebaseUser == null) {
+                                    try {
+                                      User userFromFirebaseUser =
+                                          await _firebaseAuth.anonLogin();
+                                      if (userFromFirebaseUser == null) {
+                                        setState(() {
+                                          _loading = false;
+                                        });
+                                      } else {
+                                        setState(() {
+                                          _loading = true;
+                                          _email = 'Anonymous';
+                                        });
+
+                                        ///
+                                        print(_email);
+                                        print('anonym signed in! uid: ' +
+                                            userFromFirebaseUser.uid);
+                                        Navigator.of(context)
+                                            .pushReplacementNamed('/homepage');
+                                      }
+                                    } catch (e) {
                                       setState(() {
+                                        _error =
+                                            'prüfe deine Internet-Verbindung!';
                                         _loading = false;
                                       });
-                                      print('error anon signing in');
-                                    } else {
-                                      setState(() {
-                                        _loading = true;
-                                        _email = 'Anonymous';
-                                      });
-                                      ///
-                                      print(_email);
-                                      print('anonym signed in! uid: ' + userFromFirebaseUser.uid);
-                                      Navigator.of(context)
-                                          .pushReplacementNamed('/homepage');
+                                      print(e.toString());
                                     }
                                   },
                                   elevation: 10.0,
@@ -302,14 +321,28 @@ class _LoginpageState extends State<Loginpage> {
           ),
           _buildSocialBtn(
             () async {
-              _firebaseAuth.signInWithGoogle().whenComplete(() {
+              try {
                 setState(() {
-                  _email = _firebaseAuth.getEmail();
-                });
-                ///
-                print(_email);
-                Navigator.of(context).pushReplacementNamed('/homepage');
-              });
+                    _loading = true;
+                  });
+                await _firebaseAuth.signInWithGoogle();
+                if (_firebaseAuth.googleSignIn.currentUser == null) {
+                  print('error login with google!');
+                } else {
+                  setState(() {
+                    // _loading = false;
+                    _email = _firebaseAuth.getEmail();
+                  });
+                  print(_email);
+                  Navigator.of(context).pushReplacementNamed('/homepage');
+                }
+              } catch (e) {
+                setState(() {
+                    _error = 'prüfe deine Internet-Verbindung!';
+                    _loading = false;
+                  });
+                print(e.toString());
+              }
             },
             AssetImage(
               'images/googlelogo.png',
