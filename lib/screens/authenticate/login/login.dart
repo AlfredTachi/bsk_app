@@ -330,7 +330,6 @@ class _LoginpageState extends State<Loginpage> {
                   print('error login with google!');
                 } else {
                   setState(() {
-                    // _loading = false;
                     _email = _firebaseAuth.getEmail();
                   });
                   print(_email);

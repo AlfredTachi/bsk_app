@@ -72,21 +72,21 @@ class _QuizpageState extends State<Quizpage>
   _QuizpageState(this.myData);
 
   // colors for different status
-  Color colorToShow = Colors.indigoAccent;
-  Color right = Colors.green;
-  Color wrong = Colors.red;
+  Color _colorToShow = Colors.indigoAccent;
+  Color _right = Colors.green;
+  Color _wrong = Colors.red;
   int points = 0;
   int i = 1;
   var choosQuesRandArray;
   // variable to iterate
   int j = 1;
-  int timer = 30;
-  String showTimer = '30';
+  int _timer = 30;
+  String _showTimer = '30';
 
-  bool cancelTimer = false;
-  bool answerIsNotChecked = true;
+  bool _cancelTimer = false;
+  bool _answerIsNotChecked = true;
 
-  Map<String, Color> buttonColor = {
+  Map<String, Color> _buttonColor = {
     "a": Colors.indigoAccent,
     "b": Colors.indigoAccent,
     "c": Colors.indigoAccent,
@@ -131,7 +131,7 @@ class _QuizpageState extends State<Quizpage>
     return CustomPaint(
       child: Center(
         child: Text(
-          showTimer,
+          _showTimer,
           style: TextStyle(
               color: Colors.indigo[900],
               fontSize: 35.0,
@@ -190,26 +190,26 @@ class _QuizpageState extends State<Quizpage>
     const oneSecond = Duration(seconds: 1);
     Timer.periodic(oneSecond, (Timer t) {
       setState(() {
-        if (timer < 1) {
+        if (_timer < 1) {
           t.cancel();
           nextQuestion();
-        } else if (cancelTimer == true) {
+        } else if (_cancelTimer == true) {
           t.cancel();
         } else {
           publishProgress();
-          timer -= 1;
+          _timer -= 1;
         }
-        showTimer = timer.toString();
+        _showTimer = _timer.toString();
       });
     });
   }
 
   void nextQuestion() async {
-    answerIsNotChecked = true;
-    cancelTimer = false;
+    _answerIsNotChecked = true;
+    _cancelTimer = false;
     _percentage = 0.0;
     _nextPercentage = 0.0;
-    timer = 30;
+    _timer = 30;
     setState(() {
       if (j < numberOfQuestion) {
         i = choosQuesRandArray[j];
@@ -222,10 +222,10 @@ class _QuizpageState extends State<Quizpage>
           ),
         ));
       }
-      buttonColor["a"] = Colors.indigoAccent;
-      buttonColor["b"] = Colors.indigoAccent;
-      buttonColor["c"] = Colors.indigoAccent;
-      buttonColor["d"] = Colors.indigoAccent;
+      _buttonColor["a"] = Colors.indigoAccent;
+      _buttonColor["b"] = Colors.indigoAccent;
+      _buttonColor["c"] = Colors.indigoAccent;
+      _buttonColor["d"] = Colors.indigoAccent;
     });
     starTimer();
   }
@@ -233,15 +233,15 @@ class _QuizpageState extends State<Quizpage>
   Future<void> checkAnswer(String k) async {
     if (myData[2][i.toString()] == myData[1][i.toString()][k]) {
       points += 5;
-      colorToShow = right;
+      _colorToShow = _right;
     } else {
-      colorToShow = wrong;
+      _colorToShow = _wrong;
     }
     setState(() {
-      buttonColor[k] = colorToShow;
-      cancelTimer = true;
+      _buttonColor[k] = _colorToShow;
+      _cancelTimer = true;
     });
-    answerIsNotChecked = false;
+    _answerIsNotChecked = false;
     await Future.delayed(Duration(seconds: 1), nextQuestion);
     // Timer(Duration(seconds: 1), nextQuestion);
   }
@@ -255,7 +255,7 @@ class _QuizpageState extends State<Quizpage>
       child: MaterialButton(
         elevation: 20.0,
         onPressed: () =>
-            answerIsNotChecked ? checkAnswer(k) : answerIsNotChecked = false,
+            _answerIsNotChecked ? checkAnswer(k) : _answerIsNotChecked = false,
         child: Text(
           myData != null
               ? myData[1][i.toString()][k]
@@ -266,7 +266,7 @@ class _QuizpageState extends State<Quizpage>
             fontSize: 16.0,
           ),
         ),
-        color: buttonColor[k],
+        color: _buttonColor[k],
         splashColor: Colors.deepPurple[700],
         highlightColor: Colors.deepPurple[700],
         minWidth: 300.0,
