@@ -94,9 +94,8 @@ class _QuizpageState extends State<Quizpage>
   };
 
   int numberOfQuestion = 10;
-  int totalPoints = 10 * 5;
+  int totalPoints = 10;
 
-  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
   double _percentage;
   double _nextPercentage;
   AnimationController _progressAnimationController;
@@ -146,7 +145,6 @@ class _QuizpageState extends State<Quizpage>
           circleWidth: 25.0),
     );
   }
-  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
   // function for choosing question randomly
   void choosingQuesRandomlyFunc() {
@@ -232,7 +230,7 @@ class _QuizpageState extends State<Quizpage>
 
   Future<void> checkAnswer(String k) async {
     if (myData[2][i.toString()] == myData[1][i.toString()][k]) {
-      points += 5;
+      points += 1;
       _colorToShow = _right;
     } else {
       _colorToShow = _wrong;
@@ -302,10 +300,7 @@ class _QuizpageState extends State<Quizpage>
                         color: Colors.indigo,
                       )),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)
-                          /*topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0)*/
-                          )),
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
                   onPressed: () async {
                     await Dialogs.yesNoDialog(context, 'BskQuiz abbrechen',
                         'Quiz abbrechen?', null, '/homepage');
@@ -318,9 +313,8 @@ class _QuizpageState extends State<Quizpage>
                   padding: EdgeInsets.all(15.0),
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                      myData != null
-                          ? myData[0][i.toString()]
-                          : '!! Daten werden geladen ...',
+                          j.toString() + '/' + choosQuesRandArray.length.toString()+ '.' + ' '
+                          + myData[0][i.toString()],
                       style: TextStyle(
                         color: Colors.indigo[900],
                         fontSize: 16.0,

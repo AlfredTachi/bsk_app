@@ -18,6 +18,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     // function to get picture from the gallery
     Future getImageFromGallery() async {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -225,3 +226,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+

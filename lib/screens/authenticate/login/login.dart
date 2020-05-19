@@ -327,6 +327,9 @@ class _LoginpageState extends State<Loginpage> {
                   });
                 await _firebaseAuth.signInWithGoogle();
                 if (_firebaseAuth.googleSignIn.currentUser == null) {
+                  setState(() {
+                    _loading = true;
+                  });
                   print('error login with google!');
                 } else {
                   setState(() {
