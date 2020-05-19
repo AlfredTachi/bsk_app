@@ -255,9 +255,7 @@ class _QuizpageState extends State<Quizpage>
         onPressed: () =>
             _answerIsNotChecked ? checkAnswer(k) : _answerIsNotChecked = false,
         child: Text(
-          myData != null
-              ? myData[1][i.toString()][k]
-              : '!! Daten werden geladen ...',
+              myData[1][i.toString()][k],
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'Alike',

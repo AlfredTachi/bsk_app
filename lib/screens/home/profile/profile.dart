@@ -44,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           FirebaseStorage.instance.ref().child(fileName);
       StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
       StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      print(fileName);
+      print(fileName + taskSnapshot.toString());
       setState(() {
         Scaffold.of(context)
             .showSnackBar(SnackBar(content: Text('Profilbild hochgeladen!')));
@@ -172,8 +172,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.white),
                     ),
                     Text(
-                      _firebaseAuth.getEmail(),
-                      // 'taroal@web.de',
+                      'taroal@web.de',
                       style: TextStyle(
                           fontFamily: 'Quando',
                           fontSize: 20,
@@ -190,7 +189,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.white),
                     ),
                     Text(
-                      '.../50',
+                      '.../10',
                       style: TextStyle(
                           fontFamily: 'Quando',
                           fontSize: 20,
