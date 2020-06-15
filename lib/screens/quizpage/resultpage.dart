@@ -27,11 +27,11 @@ class _ResultpageState extends State<Resultpage> {
 
   @override
   void initState() {
-    if (points < 25) {
+    if (points < 5) {
       image = images[0];
-      message = 'Du sollst dich anstrengen...\n' +
+      message = 'Versuche noch mal...\n' +
           'Du hast $points/$totalPoints Punkte erreicht !';
-    } else if (points < 40) {
+    } else if (points < 9) {
       image = images[1];
       message = 'Du kannst besser machen...\n' +
           'Du hast $points/$totalPoints Punkte erreicht !';
