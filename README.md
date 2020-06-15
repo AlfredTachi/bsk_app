@@ -5,5 +5,5 @@ It is a quiz app for the operating system component module. Learn and challenge 
 ## App Screenschots
 
 
-![](images/screen-0.png)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![](images/screen-0.png)![](images/screen-00.png)![](images/screen-01.png)
+
