@@ -20,28 +20,21 @@ class Getjson extends StatelessWidget {
   // function sets the asset to a particular JSON file
   setJsonFile() {
     if (kapitelName == 'Einführung & Grundlagen') {
-      jsonFileToLoad = 'assets/python.json';
+      jsonFileToLoad = 'assets/01_intro.json';
     } else if (kapitelName == 'Prozesse und Threads') {
-      // jsonFileToLoad = 'assets/pt.json';
-      jsonFileToLoad = 'assets/python1.json';
+      jsonFileToLoad = 'assets/02_process.json';
     } else if (kapitelName == 'IPC & Race Conditions') {
-      // jsonFileToLoad = 'assets/ipc.json';
-      jsonFileToLoad = 'assets/python2.json';
+      jsonFileToLoad = 'assets/03_ipc.json';
     } else if (kapitelName == 'Scheduling') {
-      // jsonFileToLoad = 'assets/scheduling.json';
-      jsonFileToLoad = 'assets/python3.json';
+      jsonFileToLoad = 'assets/04_scheduling.json';
     } else if (kapitelName == 'Speicherverwaltung') {
-      // jsonFileToLoad = 'assets/storage.json';
-      jsonFileToLoad = 'assets/python4.json';
+      jsonFileToLoad = 'assets/05_storage.json';
     } else if (kapitelName == 'Dateisysteme') {
-      // jsonFileToLoad = 'assets/filesysteme.json';
-      jsonFileToLoad = 'assets/python5.json';
+      jsonFileToLoad = 'assets/06_fileSystem.json';
     } else if (kapitelName == 'IT-Sicherheit') {
-      // jsonFileToLoad = 'assets/itsec.json';
-      jsonFileToLoad = 'assets/python6.json';
+      jsonFileToLoad = 'assets/07_itsec.json';
     } else {
-      // jsonFileToLoad = 'assets/exam.json';
-      jsonFileToLoad = 'assets/python7.json';
+      jsonFileToLoad = 'assets/08_exam.json';
     }
   }
 
@@ -79,21 +72,21 @@ class _QuizpageState extends State<Quizpage>
   _QuizpageState(this.myData);
 
   // colors for different status
-  Color colorToShow = Colors.indigoAccent;
-  Color right = Colors.green;
-  Color wrong = Colors.red;
+  Color _colorToShow = Colors.indigoAccent;
+  Color _right = Colors.green;
+  Color _wrong = Colors.red;
   int points = 0;
   int i = 1;
   var choosQuesRandArray;
   // variable to iterate
   int j = 1;
-  int timer = 30;
-  String showTimer = '30';
+  int _timer = 30;
+  String _showTimer = '30';
 
-  bool cancelTimer = false;
-  bool answerIsNotChecked = true;
+  bool _cancelTimer = false;
+  bool _answerIsNotChecked = true;
 
-  Map<String, Color> buttonColor = {
+  Map<String, Color> _buttonColor = {
     "a": Colors.indigoAccent,
     "b": Colors.indigoAccent,
     "c": Colors.indigoAccent,
@@ -101,10 +94,8 @@ class _QuizpageState extends State<Quizpage>
   };
 
   int numberOfQuestion = 10;
-  int totalPoints = 10 * 5;
+  int totalPoints = 10;
 
-  
-  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
   double _percentage;
   double _nextPercentage;
   AnimationController _progressAnimationController;
@@ -135,12 +126,11 @@ class _QuizpageState extends State<Quizpage>
     });
   }
 
-
   progressView() {
     return CustomPaint(
       child: Center(
         child: Text(
-          showTimer,
+          _showTimer,
           style: TextStyle(
               color: Colors.indigo[900],
               fontSize: 35.0,
@@ -155,8 +145,6 @@ class _QuizpageState extends State<Quizpage>
           circleWidth: 25.0),
     );
   }
-  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
 
   // function for choosing question randomly
   void choosingQuesRandomlyFunc() {
@@ -200,26 +188,26 @@ class _QuizpageState extends State<Quizpage>
     const oneSecond = Duration(seconds: 1);
     Timer.periodic(oneSecond, (Timer t) {
       setState(() {
-        if (timer < 1) {
+        if (_timer < 1) {
           t.cancel();
           nextQuestion();
-        } else if (cancelTimer == true) {
+        } else if (_cancelTimer == true) {
           t.cancel();
         } else {
           publishProgress();
-          timer -= 1;
+          _timer -= 1;
         }
-        showTimer = timer.toString();
+        _showTimer = _timer.toString();
       });
     });
   }
 
   void nextQuestion() async {
-    answerIsNotChecked = true;
-    cancelTimer = false;
+    _answerIsNotChecked = true;
+    _cancelTimer = false;
     _percentage = 0.0;
-      _nextPercentage = 0.0;
-    timer = 30;
+    _nextPercentage = 0.0;
+    _timer = 30;
     setState(() {
       if (j < numberOfQuestion) {
         i = choosQuesRandArray[j];
@@ -232,26 +220,26 @@ class _QuizpageState extends State<Quizpage>
           ),
         ));
       }
-      buttonColor["a"] = Colors.indigoAccent;
-      buttonColor["b"] = Colors.indigoAccent;
-      buttonColor["c"] = Colors.indigoAccent;
-      buttonColor["d"] = Colors.indigoAccent;
+      _buttonColor["a"] = Colors.indigoAccent;
+      _buttonColor["b"] = Colors.indigoAccent;
+      _buttonColor["c"] = Colors.indigoAccent;
+      _buttonColor["d"] = Colors.indigoAccent;
     });
     starTimer();
   }
 
   Future<void> checkAnswer(String k) async {
     if (myData[2][i.toString()] == myData[1][i.toString()][k]) {
-      points += 5;
-      colorToShow = right;
+      points += 1;
+      _colorToShow = _right;
     } else {
-      colorToShow = wrong;
+      _colorToShow = _wrong;
     }
     setState(() {
-      buttonColor[k] = colorToShow;
-      cancelTimer = true;
+      _buttonColor[k] = _colorToShow;
+      _cancelTimer = true;
     });
-    answerIsNotChecked = false;
+    _answerIsNotChecked = false;
     await Future.delayed(Duration(seconds: 1), nextQuestion);
     // Timer(Duration(seconds: 1), nextQuestion);
   }
@@ -265,18 +253,16 @@ class _QuizpageState extends State<Quizpage>
       child: MaterialButton(
         elevation: 20.0,
         onPressed: () =>
-            answerIsNotChecked ? checkAnswer(k) : answerIsNotChecked = false,
+            _answerIsNotChecked ? checkAnswer(k) : _answerIsNotChecked = false,
         child: Text(
-          myData != null
-              ? myData[1][i.toString()][k]
-              : '!! Daten werden geladen ...',
+              myData[1][i.toString()][k],
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'Alike',
             fontSize: 16.0,
           ),
         ),
-        color: buttonColor[k],
+        color: _buttonColor[k],
         splashColor: Colors.deepPurple[700],
         highlightColor: Colors.deepPurple[700],
         minWidth: 300.0,
@@ -312,10 +298,7 @@ class _QuizpageState extends State<Quizpage>
                         color: Colors.indigo,
                       )),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)
-                          /*topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0)*/
-                          )),
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
                   onPressed: () async {
                     await Dialogs.yesNoDialog(context, 'BskQuiz abbrechen',
                         'Quiz abbrechen?', null, '/homepage');
@@ -328,9 +311,8 @@ class _QuizpageState extends State<Quizpage>
                   padding: EdgeInsets.all(15.0),
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                      myData != null
-                          ? myData[0][i.toString()]
-                          : '!! Daten werden geladen ...',
+                          j.toString() + '/' + choosQuesRandArray.length.toString()+ '.' + ' '
+                          + myData[0][i.toString()],
                       style: TextStyle(
                         color: Colors.indigo[900],
                         fontSize: 16.0,

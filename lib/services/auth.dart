@@ -3,54 +3,49 @@ import 'package:bsk_app/models/user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+  String _email = '';
 
-final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
-String name = '';
-String email = '';
-String imageUrl = '';
-
-// Sign in with google
-final GoogleSignIn googleSignIn = GoogleSignIn();
-
-Future<FirebaseUser> signInWithGoogle() async {
-  final GoogleSignInAccount googleUser = await googleSignIn.signIn();
-  final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-
-  final AuthCredential credential = GoogleAuthProvider.getCredential(
-    idToken: googleAuth.idToken,
-    accessToken: googleAuth.accessToken,
-  );
-
-  if (googleUser == null) {
-    return null;
+// Getter
+  String getEmail() {
+    return _email;
   }
 
-  final FirebaseUser user =
-      (await _firebaseAuth.signInWithCredential(credential)).user;
+// Sign in with google
+  final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
 
-  // checking if users info not null
-  // assert(user.displayName != null);
-  // assert(user.email != null);
-  // assert(user.photoUrl != null);
+  Future<FirebaseUser> signInWithGoogle() async {
+    final GoogleSignInAccount googleUser = await googleSignIn.signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
 
-  name = user.displayName;
-  email = user.email;
-  imageUrl = user.photoUrl;
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      idToken: googleAuth.idToken,
+      accessToken: googleAuth.accessToken,
+    );
 
-  // assert(!user.isAnonymous);
-  // assert(await user.getIdToken() != null);
+    if (googleUser == null) {
+      return null;
+    }
 
-  final FirebaseUser currentUser = await _firebaseAuth.currentUser();
-  assert(user.uid == currentUser.uid);
+    final FirebaseUser user =
+        (await _firebaseAuth.signInWithCredential(credential)).user;
 
-  return user;
-}
+    // checking if users info not null
+    assert(user.displayName != null);
+    assert(user.email != null);
 
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
 
+    final FirebaseUser currentUser = await _firebaseAuth.currentUser();
+    assert(user.uid == currentUser.uid);
+
+    _email = currentUser.email;
+
+    return currentUser;
+  }
 
   // create user Object based on FirebaseUser
   User _userFromFirebaseUer(FirebaseUser user) {
@@ -67,7 +62,7 @@ Future<FirebaseUser> signInWithGoogle() async {
     try {
       return await _firebaseAuth.signOut();
     } catch (e) {
-      print('error logging out');
+      print('error logging out' + e.toString());
       return null;
     }
   }
@@ -98,8 +93,7 @@ Future<FirebaseUser> signInWithGoogle() async {
   }
 
   // Email and Password Sign In
-  Future<User> signInWithEmailAndPassword(
-      String email, String password) async {
+  Future<User> signInWithEmailAndPassword(String email, String password) async {
     try {
       FirebaseUser user = (await _firebaseAuth.signInWithEmailAndPassword(
               email: email, password: password))

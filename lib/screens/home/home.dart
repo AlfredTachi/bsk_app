@@ -14,7 +14,18 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   final AuthService _firebaseAuth = AuthService();
 
-  List<String> images = [
+  List<String> _kapitelNames = [
+    'Einführung & Grundlagen',
+    'Prozesse und Threads',
+    'IPC und Race Conditions',
+    'Scheduling',
+    'Speicherverwaltung',
+    'Dateisysteme',
+    'IT-Sicherheit',
+    'Alte Klausurfragen',
+  ];
+
+  List<String> _images = [
     'images/01_BS_GL.png',
     'images/02_Process-thread.png',
     'images/03_ipc.png',
@@ -25,7 +36,7 @@ class _HomepageState extends State<Homepage> {
     'images/examQuestion.png',
   ];
 
-  List<String> descriptions = [
+  List<String> _descriptions = [
     'Geschichte, Grundbegriffe und Arten von Betriebssystemen.',
     'Parallelität und Speedup, Arten von Prozessen, Systemaufrufe, Prozesserzeugung, -terminierung und -zustände, Threads und Multithreading.',
     'IPC - Pipes, FIFOs, Shared Memory, Signale - und Race Condition, Semaphore/Mutex, Barrieren, Monitoren.',
@@ -148,14 +159,14 @@ class _HomepageState extends State<Homepage> {
           ),
           body: ListView(
             children: <Widget>[
-              customcard('Einführung & Grundlagen', images[0], descriptions[0]),
-              customcard('Prozesse und Threads', images[1], descriptions[1]),
-              customcard('IPC und Race Conditions', images[2], descriptions[2]),
-              customcard('Scheduling', images[3], descriptions[3]),
-              customcard('Speicherverwaltung', images[4], descriptions[4]),
-              customcard('Dateisysteme', images[5], descriptions[5]),
-              customcard('IT-Sicherheit', images[6], descriptions[6]),
-              customcard('Alte Klausurfragen', images[7], descriptions[7]),
+              customcard(_kapitelNames[0], _images[0], _descriptions[0]),
+              customcard(_kapitelNames[1], _images[1], _descriptions[1]),
+              customcard(_kapitelNames[2], _images[2], _descriptions[2]),
+              customcard(_kapitelNames[3], _images[3], _descriptions[3]),
+              customcard(_kapitelNames[4], _images[4], _descriptions[4]),
+              customcard(_kapitelNames[5], _images[5], _descriptions[5]),
+              customcard(_kapitelNames[6], _images[6], _descriptions[6]),
+              customcard(_kapitelNames[7], _images[7], _descriptions[7]),
             ],
           ),
           bottomNavigationBar: CurvedNavigationBar(

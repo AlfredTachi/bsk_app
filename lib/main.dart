@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         title: 'BskQuiz',
         theme: ThemeData(
           primarySwatch: Colors.indigo,

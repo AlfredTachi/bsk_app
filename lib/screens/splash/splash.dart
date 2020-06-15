@@ -62,10 +62,10 @@ class _SplashscreenState extends State<Splashscreen> {
                     padding: EdgeInsets.only(top: 20.0),
                   ),
                   Text(
-                    '    Mach dich fit \nfür die BSK Prüfung',
+                    '        Vorbereitung auf\nBetriebssysteme Komponenten',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18.0,
+                        fontSize: 19.0,
                         fontFamily: "Quando"),
                   )
                 ],
