@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -45,3 +46,15 @@ Future<bool> onWillPop() async {
   }
   return true;
 }
+
+  // to check if device is connected
+  Connectivity connectivity = Connectivity();
+
+  checkInternetConnectivity() async {
+    dynamic connectivityResult = await connectivity.checkConnectivity();
+    if (connectivityResult == ConnectivityResult.none) {
+      return false;
+    } else {
+      return true;
+    }
+  }

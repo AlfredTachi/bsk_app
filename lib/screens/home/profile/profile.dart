@@ -18,12 +18,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     // function to get picture from the gallery
     Future getImageFromGallery() async {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
       setState(() {
         _image = image;
-        print('Image Path $_image');
       });
       Navigator.of(context).pop();
     }
@@ -33,7 +33,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       var image = await ImagePicker.pickImage(source: ImageSource.camera);
       setState(() {
         _image = image;
-        print('Image Path $_image');
       });
       Navigator.of(context).pop();
     }
@@ -45,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           FirebaseStorage.instance.ref().child(fileName);
       StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
       StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      print(fileName);
+      print(fileName + taskSnapshot.toString());
       setState(() {
         Scaffold.of(context)
             .showSnackBar(SnackBar(content: Text('Profilbild hochgeladen!')));
@@ -190,7 +189,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.white),
                     ),
                     Text(
-                      '.../50',
+                      '.../10',
                       style: TextStyle(
                           fontFamily: 'Quando',
                           fontSize: 20,
@@ -226,3 +225,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+

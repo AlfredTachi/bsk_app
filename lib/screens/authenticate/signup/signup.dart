@@ -12,13 +12,12 @@ class Signuppage extends StatefulWidget {
 class _SignuppageState extends State<Signuppage> {
   final AuthService _firebaseAuth = AuthService();
   final _formKey = GlobalKey<FormState>();
-  bool loading = false;
+  bool _loading = false;
 
   // text fiel state
-  String name = '';
-  String email = '';
-  String password = '';
-  String error = '';
+  String _email = '';
+  String _password = '';
+  String _error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class _SignuppageState extends State<Signuppage> {
         },
         child: WillPopScope(
           onWillPop: onWillPop,
-          child: loading
+          child: _loading
               ? Loading()
               : Scaffold(
                   backgroundColor: Colors.indigo,
@@ -68,32 +67,12 @@ class _SignuppageState extends State<Signuppage> {
                                                 bottom: BorderSide(
                                                     color: Colors.grey[100]))),
                                         child: TextFormField(
-                                            validator: (value) => value.isEmpty
-                                                ? 'Bitte Benutzername eingeben'
-                                                : null,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                name = value;
-                                              });
-                                            },
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            decoration:
-                                                usernameInputDecoration),
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.all(8.0),
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.grey[100]))),
-                                        child: TextFormField(
                                           validator: (value) => value.isEmpty
                                               ? 'Bitte eine valide Email eingeben!'
                                               : null,
                                           onChanged: (value) {
                                             setState(() {
-                                              email = value;
+                                              _email = value;
                                             });
                                           },
                                           keyboardType:
@@ -109,7 +88,7 @@ class _SignuppageState extends State<Signuppage> {
                                               : null,
                                           onChanged: (value) {
                                             setState(() {
-                                              password = value;
+                                              _password = value;
                                             });
                                           },
                                           obscureText: true,
@@ -126,23 +105,32 @@ class _SignuppageState extends State<Signuppage> {
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
                                       setState(() {
-                                        loading = true;
+                                        _loading = true;
                                       });
                                       try {
+                                         bool isConnected =
+                                            await checkInternetConnectivity();
                                         dynamic result = await _firebaseAuth
                                             .signUpWithEmailAndPassword(
-                                                email, password);
-                                        if (result == null) {
+                                                _email, _password);
+                                        if (!isConnected) {
                                           setState(() {
-                                            error =
+                                            _error =
+                                                'prüfe deine Internet-Verbindung!';
+                                            _loading = false;
+                                          });
+                                        } else if (result == null) {
+                                          setState(() {
+                                            _error =
                                                 'Email nicht valide oder bereits verwendet!';
-                                            loading = false;
+                                            _loading = false;
                                           });
                                         } else {
                                           print('User created uid: ' +
                                               result.uid);
                                           Navigator.of(context)
-                                              .pushReplacementNamed('/homepage');
+                                              .pushReplacementNamed(
+                                                  '/homepage');
                                         }
                                       } catch (e) {
                                         print(e.toString());
@@ -174,13 +162,14 @@ class _SignuppageState extends State<Signuppage> {
                                 SizedBox(
                                   height: 12.0,
                                 ),
-                                Text(error,
+                                Text(_error,
                                     style: TextStyle(
                                         color: Colors.red, fontSize: 14.0)),
                                 SizedBox(
                                   height: 40,
                                 ),
-                                _buildSignInBtn()
+                                _buildSignInBtn('/loginpage',
+                                    'Schon registriert? ', 'Sich einloggen')
                               ],
                             ),
                           ),
@@ -194,16 +183,16 @@ class _SignuppageState extends State<Signuppage> {
     );
   }
 
-  Widget _buildSignInBtn() {
+  Widget _buildSignInBtn(String route, String question, String action) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushReplacementNamed('/loginpage');
+        Navigator.of(context).pushReplacementNamed(route);
       },
       child: RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: 'Schon registriert? ',
+              text: question,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 14.0,
@@ -211,7 +200,7 @@ class _SignuppageState extends State<Signuppage> {
                   fontFamily: 'Quando'),
             ),
             TextSpan(
-              text: 'Sich einloggen',
+              text: action,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 14.0,
