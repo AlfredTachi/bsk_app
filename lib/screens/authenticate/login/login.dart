@@ -86,7 +86,7 @@ class _LoginpageState extends State<Loginpage> {
                                         padding: EdgeInsets.all(8.0),
                                         child: TextFormField(
                                           validator: (value) => value.length < 8
-                                              ? 'Passwort muss 8+ Zeichen lang sein!'
+                                              ? 'Das Passwort muss mindesten 8 Zeichen enthalten!'
                                               : null,
                                           onChanged: (value) {
                                             setState(() {
@@ -139,7 +139,7 @@ class _LoginpageState extends State<Loginpage> {
                                         if (!isConnected) {
                                           setState(() {
                                             _error =
-                                                'prüfe deine Internet-Verbindung!';
+                                                'Keine Internetverbindung. Stelle eine Verbindung zum Internet her und versuche es erneut.';
                                             _loading = false;
                                           });
                                         } else if (result == null) {
@@ -213,7 +213,7 @@ class _LoginpageState extends State<Loginpage> {
                                     } catch (e) {
                                       setState(() {
                                         _error =
-                                            'prüfe deine Internet-Verbindung!';
+                                            'Keine Internetverbindung. Stelle eine Verbindung zum Internet her und versuche es erneut.';
                                         _loading = false;
                                       });
                                       print(e.toString());
@@ -340,7 +340,7 @@ class _LoginpageState extends State<Loginpage> {
                 }
               } catch (e) {
                 setState(() {
-                    _error = 'prüfe deine Internet-Verbindung!';
+                    _error = 'Keine Internetverbindung. Stelle eine Verbindung zum Internet her und versuche es erneut.';
                     _loading = false;
                   });
                 print(e.toString());
@@ -375,7 +375,7 @@ class _LoginpageState extends State<Loginpage> {
               text: 'Registrieren',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14.0,
+                  fontSize: 15.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Quando'),
             ),
