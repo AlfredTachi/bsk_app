@@ -116,7 +116,7 @@ class _SignuppageState extends State<Signuppage> {
                                         if (!isConnected) {
                                           setState(() {
                                             _error =
-                                                'prüfe deine Internet-Verbindung!';
+                                                'Keine Internetverbindung. Stelle eine Verbindung zum Internet her und versuche es erneut.';
                                             _loading = false;
                                           });
                                         } else if (result == null) {
@@ -166,10 +166,15 @@ class _SignuppageState extends State<Signuppage> {
                                     style: TextStyle(
                                         color: Colors.red, fontSize: 14.0)),
                                 SizedBox(
+                                  height: 12,
+                                ),
+                                _buildSignInBtn('/datenschutzbestimmungenpage',
+                                    'Wenn Sie auf "Registrieren" klicken, stimmen Sie den ', 'BskQuizApp-Datenschutzbestimmungen zu.'),
+                                SizedBox(
                                   height: 40,
                                 ),
                                 _buildSignInBtn('/loginpage',
-                                    'Schon registriert? ', 'Sich einloggen')
+                                    'Schon registriert? ', 'Sich einloggen        ')
                               ],
                             ),
                           ),
@@ -183,16 +188,16 @@ class _SignuppageState extends State<Signuppage> {
     );
   }
 
-  Widget _buildSignInBtn(String route, String question, String action) {
+  Widget _buildSignInBtn(String route, String text, String action) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushReplacementNamed(route);
+        Navigator.of(context).pushNamed(route);
       },
       child: RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: question,
+              text: text,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 14.0,
@@ -203,7 +208,7 @@ class _SignuppageState extends State<Signuppage> {
               text: action,
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14.0,
+                  fontSize: 15.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Quando'),
             ),

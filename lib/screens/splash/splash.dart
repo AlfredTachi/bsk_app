@@ -11,7 +11,7 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 4), () {
+    Timer(Duration(seconds: 5), () {
       Navigator.of(context).pushReplacementNamed(
         '/loginpage',
       );
@@ -59,14 +59,14 @@ class _SplashscreenState extends State<Splashscreen> {
                     backgroundColor: Colors.white,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 20.0),
+                    padding: EdgeInsets.only(top: 10.0),
                   ),
                   Text(
-                    '        Vorbereitung auf\nBetriebssysteme Komponenten',
+                    '  Vorbereitung auf das Modul\nBetriebssysteme-Komponenten\n\n             BskQuiz',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 19.0,
-                        fontFamily: "Quando"),
+                        fontSize: 27.0,
+                        fontFamily: "Satisfy"),
                   )
                 ],
               ),
