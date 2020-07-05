@@ -76,7 +76,7 @@ class SummaryDirState extends State<SummaryDir> {
                             padding: const EdgeInsets.only(
                                 left: 20, top: 3, bottom: 3),
                             child: Text(
-                              "Zusammenfassungen",
+                              "hilfreiche Dateien",
                               style: TextStyle(
                                   fontSize: 16,
                                   fontFamily: 'Quando',

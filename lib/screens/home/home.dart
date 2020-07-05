@@ -44,7 +44,7 @@ class _HomepageState extends State<Homepage> {
     'Speicherverwaltung, Seitenersetzungsalgorithmen.',
     'Grundlagen der Dateisysteme',
     'Terminologie, Zugriffsschutz, verdeckte Kanäle, Grundlagen der Authentifizierung, Secure Coding.',
-    'Zusammenfassung der Fragen aus alten.',
+    'Zusammenfassung der Fragen aus alten Klausuren.',
   ];
 
   Widget customcard(String kapitelName, String image, String description) {

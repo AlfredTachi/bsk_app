@@ -10,19 +10,17 @@ class MoreInfoBsk extends StatefulWidget {
 class _MoreInfoBskState extends State<MoreInfoBsk> {
   
   List<String> _descriptions = [
-    'Meine Bsk Youtube Playlist',
+    'Forking und Prozessbäume',
+    'Bsk Youtube Playlist',
     'Moodle',
     'ownCloud',
-    'Placeholder 2',
-    'Placeholder 3',
   ];
 
   List<String> _url = [
+    'https://www.geeksforgeeks.org/fork-system-call',
     'https://www.youtube.com/playlist?list=PLW_T1H3VUi-4NJHebZEkq-5mrQslSieer',
     'https://moodle.hs-worms.de/moodle/',
     'https://cloud2.rz-fuhrmann.de/index.php/s/2w9MVu5Tx7EITbh?path=%2F',
-    '',
-    '',
   ];
 
 
@@ -75,7 +73,7 @@ class _MoreInfoBskState extends State<MoreInfoBsk> {
         child: Scaffold(
           appBar: AppBar(
             title: Text(
-              'Wichtige Links',
+              'hilfreiche Links',
               style: TextStyle(fontFamily: 'Quando'),
             ),
             centerTitle: true,
@@ -93,7 +91,6 @@ class _MoreInfoBskState extends State<MoreInfoBsk> {
               customcard(_descriptions[1], _url[1]),
               customcard(_descriptions[2], _url[2]),
               customcard(_descriptions[3], _url[3]),
-              customcard(_descriptions[4], _url[4]),
             ],
           ),
         ),

@@ -169,7 +169,7 @@ class _SignuppageState extends State<Signuppage> {
                                   height: 12,
                                 ),
                                 _buildSignInBtn('/datenschutzbestimmungenpage',
-                                    'Wenn Sie auf "Registrieren" klicken, stimmen Sie den ', 'BskQuizApp-Datenschutzbestimmungen zu.'),
+                                    '  Wenn Sie auf "Registrieren" klicken, stimmen Sie den ', 'BskQuizApp-Datenschutzbestimmungen zu.'),
                                 SizedBox(
                                   height: 40,
                                 ),
