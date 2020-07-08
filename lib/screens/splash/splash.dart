@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Splashscreen extends StatefulWidget {
   @override
@@ -20,6 +21,8 @@ class _SplashscreenState extends State<Splashscreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
     return Scaffold(
         body: SafeArea(
             child: Stack(
@@ -38,7 +41,7 @@ class _SplashscreenState extends State<Splashscreen> {
                 borderRadius: BorderRadius.circular(20.0),
                 child: Container(
                   height: 330,
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery.of(context).size.width * 0.8,
                   child: ClipRect(
                     child: Image(
                       fit: BoxFit.contain,
