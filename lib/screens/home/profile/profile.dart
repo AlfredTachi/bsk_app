@@ -172,7 +172,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.white),
                     ),
                     Text(
-                      'taroal@web.de',
+                      'test@web.de',
                       style: TextStyle(
                           fontFamily: 'Quando',
                           fontSize: 20,
@@ -189,7 +189,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.white),
                     ),
                     Text(
-                      '.../10',
+                      '8/10',
                       style: TextStyle(
                           fontFamily: 'Quando',
                           fontSize: 20,
